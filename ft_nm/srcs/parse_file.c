@@ -6,13 +6,14 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/23 10:35:48 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/23 11:34:18 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	parse_file(t_file *file)
+int		parse_file(t_file *file)
 {
-	(void)file;
+	if (!(parse_file_header(file)))
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/23 10:41:35 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/02/23 11:31:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../../libft/includes/libft.h"
 # include "includes.h"
 # include "prototypes.h"
-# include "file_header.h"
 # include "file.h"
 
 #endif
