@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 13:54:59 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:43:35 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int		parse_object(t_object *object)
 	object->sections = NULL;
 	if (!(parse_object_magic(object)))
 		return (0);
-	ft_putstr(object->is_64 ? "64 " : "32 ");
-	ft_putstr(object->byte_order == BO_LITTLE ? "LE " : "BE ");
+	//ft_putstr(object->is_64 ? "64 " : "32 ");
+	//ft_putstr(object->byte_order == BO_LITTLE ? "LE " : "BE ");
 	if (!(parse_object_header(object)))
 		return (0);
-	uint32_t filetype = object->header.header_32.filetype;
+	/*uint32_t filetype = object->header.header_32.filetype;
 	if (filetype & MH_OBJECT)
 		ft_putstr("MH_OBJECT ");
 	if (filetype & MH_EXECUTE)
@@ -68,7 +68,7 @@ int		parse_object(t_object *object)
 		ft_putstr("MH_DSYM ");
 	if (filetype & MH_KEXT_BUNDLE)
 		ft_putstr("MH_KEXT_BUNDLE ");
-	ft_putchar('\n');
+	ft_putchar('\n');*/
 	if (!parse_object_segments(object))
 		return (0);
 	return (1);

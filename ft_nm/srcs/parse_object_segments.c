@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 10:25:45 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:02:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:43:10 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@ static int		parse_object_segment_command(t_object *object)
 		return (0);
 	if (!buffer_set_position(&object->buffer, object->buffer.position - sizeof(object_cmd.load_command)))
 		return (0);
-	ft_putstr("Command position: ");
-	ft_putul(object->buffer.position);
-	ft_putstr(", Command id: ");
-	ft_putul(object_cmd.load_command.cmd);
-	ft_putstr(", Command size: ");
-	ft_putul(object_cmd.load_command.cmdsize);
-	ft_putchar('\n');
 	if (!(object_cmd.data = malloc(sizeof(*object_cmd.data) * object_cmd.load_command.cmdsize)))
 		return (0);
 	if (!buffer_read(&object->buffer, object_cmd.data, object_cmd.load_command.cmdsize))

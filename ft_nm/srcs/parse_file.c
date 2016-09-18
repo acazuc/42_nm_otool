@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:20:12 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:47:20 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void			parse_file(t_file *file, int print_name)
 {
 	if (parse_file_is_archive(file))
 	{
-		ft_putendl("Static archive file");
 		parse_archive(file);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:42:30 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:45:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,20 @@ void			print_object(t_object *object)
 	lst = object->symbols;
 	while (lst)
 	{
-		if (object->is_64)
-			print_hex_8(lst->symbol.value);
+		if (lst->symbol.section == 0)
+		{
+			if (object->is_64)
+				ft_putstr("                ");
+			else
+				ft_putstr("        ");
+		}
 		else
-			print_hex_4(lst->symbol.value);
+		{
+			if (object->is_64)
+				print_hex_8(lst->symbol.value);
+			else
+				print_hex_4(lst->symbol.value);
+		}
 		ft_putchar(' ');
 		print_object_letter(object, &lst->symbol);
 		ft_putchar(' ');
