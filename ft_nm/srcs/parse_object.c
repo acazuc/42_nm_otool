@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 10:48:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 13:54:59 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	parse_object_header(t_object *object)
 
 int		parse_object(t_object *object)
 {
+	object->sections = NULL;
 	if (!(parse_object_magic(object)))
 		return (0);
 	ft_putstr(object->is_64 ? "64 " : "32 ");

@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   archive_print.c                                    :+:      :+:    :+:   */
+/*   object_sections_push_back.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:19:41 by acazuc           ###   ########.fr       */
+/*   Created: 2016/09/18 13:55:16 by acazuc            #+#    #+#             */
+/*   Updated: 2016/09/18 14:41:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	archive_print_file(t_archive *archive, t_ar_file *file)
+int		object_sections_push_back(t_section_list **list, t_section section)
 {
-	if (!parse_object(&file->object))
-		return ;
-	ft_putstr(archive->file->name);
-	ft_putchar('(');
-	ft_putstr(file->name);
-	ft_putendl("):");
-	print_object(&file->object);
-}
+	t_section_list	*new;
+	t_section_list	*tmp;
 
-void	archive_print(t_archive *archive)
-{
-	t_ar_file_list *lst;
-
-	lst = archive->files;
-	while (lst)
+	if (!(new = malloc(sizeof(*new))))
+		return (0);
+	new->section = section;
+	new->next = NULL;
+	if (!(*list))
 	{
-		archive_print_file(archive, &lst->file);
-		lst = lst->next;
+		*list = new;
+		return (1);
 	}
+	tmp = *list;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+	return (1);
 }

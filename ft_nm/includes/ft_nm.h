@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 13:53:32 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:26:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_segment_cmd	t_segment_cmd;
 typedef struct s_object_cmd		t_object_cmd;
 typedef struct s_section		t_section;
 typedef struct s_section_list	t_section_list;
+typedef struct s_symbol			t_symbol;
+typedef struct s_symbol_list	t_symbol_list;
 
 void		ft_nm(char *file_name, int print_name);
 void		parse_file(t_file *file, int print_name);
@@ -55,6 +57,8 @@ int			parse_object_command_segment_64(t_object *object, t_object_cmd *object_cmd
 int			buffer_read_string(t_buffer *buffer, char **addr);
 void		print_hex_4(uint32_t val);
 void		print_hex_8(uint64_t val);
+int			object_sections_push_back(t_section_list **list, t_section section);
+int			object_symbols_push_back(t_symbol_list **list, t_symbol symbol);
 
 enum								e_byte_order
 {
@@ -88,6 +92,7 @@ struct								s_object
 	char							is_64;
 	t_buffer						buffer;
 	t_section_list					*sections;
+	t_symbol_list					*symbols;
 };
 
 struct								s_ar_file_header
@@ -145,6 +150,19 @@ struct								s_section_list
 {
 	t_section						section;
 	t_section_list					*next;
+};
+
+struct								s_symbol
+{
+	char							*name;
+	uint64_t						value;
+	uint8_t							section;
+};
+
+struct								s_symbol_list
+{
+	t_symbol						symbol;
+	t_symbol_list					*next;
 };
 
 #endif

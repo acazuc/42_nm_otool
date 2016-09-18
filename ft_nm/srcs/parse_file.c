@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 10:16:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:20:12 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void		parse_file_file(t_file *file)
 
 	object.buffer = file->buffer;
 	if (!(parse_object(&object)))
-		return ;
+		return 
+	print_object(&object);
 }
 
 void			parse_file(t_file *file, int print_name)

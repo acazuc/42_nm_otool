@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 13:13:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 13:53:58 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:41:58 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		parse_object_command_segment_64(t_object *object, t_object_cmd *object_cmd)
 {
 	struct segment_command_64	segment_command;
 	struct section_64			section;
+	t_section					sec;
 	size_t						offset;
 	uint32_t					i;
 
@@ -30,7 +31,9 @@ int		parse_object_command_segment_64(t_object *object, t_object_cmd *object_cmd)
 	while (i < segment_command.nsects)
 	{
 		ft_memcpy(&section, object_cmd->data + offset, sizeof(section));
-		ft_putendl(section.sectname);
+		sec.name = ft_strdup(section.sectname);
+		if (!object_sections_push_back(&object->sections, sec))
+			return (0);
 		offset += sizeof(section);
 		i++;
 	}

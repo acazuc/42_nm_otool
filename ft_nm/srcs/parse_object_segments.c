@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 10:25:45 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 13:34:09 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 14:02:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int		parse_object_segment_command_2(t_object *object, t_object_cmd *object_cmd)
 {
-	/*if (object_cmd->load_command.cmd == LC_SYMTAB)
+	if (object_cmd->load_command.cmd == LC_SYMTAB)
 		return (parse_object_command_symtab(object, object_cmd));
-	else */if (object_cmd->load_command.cmd == LC_SEGMENT)
+	else if (object_cmd->load_command.cmd == LC_SEGMENT)
 		return (parse_object_command_segment_32(object, object_cmd));
 	else if (object_cmd->load_command.cmd == LC_SEGMENT_64)
 		return (parse_object_command_segment_64(object, object_cmd));
