@@ -6,55 +6,50 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/23 10:38:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 07:34:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static void		error(char *file, char *message)
+static void		start_parse_file(char *name)
 {
-	ft_putstr(file);
-	ft_putstr(": ");
-	ft_putendl(message);
-}
+	t_file			file;
+	struct stat		file_stat;
 
-static void		ft_nm_2(t_file *file)
-{
-	struct stat	file_stat;
-
-	if (fstat(file->fd, &file_stat) == -1)
+	file.name = name;
+	if ((file.fd = open(file.name, O_RDONLY)) == -1)
 	{
-		close(file->fd);
-		error(file->name, "Failed to read stat from file");
+		file_error(&file, "Failed to open file");
 		return ;
 	}
-	if (!(file->data = mmap(NULL, file_stat.st_size, PROT_READ | PROT_WRITE
-					, MAP_ANON | MAP_PRIVATE, -1, 0)))
+	if (fstat(file.fd, &file_stat) == -1)
 	{
-		close(file->fd);
-		error(file->name, "Failed to map file");
+		close(file.fd);
+		file_error(&file, "Failed to read stat from file");
 		return ;
 	}
-	parse_file(file);
-	print_file(file);
+	file.buffer.position = 0;
+	file.buffer.length = file_stat.st_size;
+	if ((file.buffer.data = mmap(NULL, file_stat.st_size
+					, PROT_READ | PROT_WRITE
+					, MAP_PRIVATE, file.fd, 0)) == MAP_FAILED)
+	{
+		close(file.fd);
+		file_error(&file, "Failed to map file");
+		return ;
+	}
+	parse_file(&file);
+	print_file(&file);
 }
 
 void			ft_nm(char *file_name, int print_name)
 {
-	t_file			file;
-
-	file.name = file_name;
 	if (print_name)
 	{
 		ft_putchar('\n');
-		ft_putstr(file.name);
+		ft_putstr(file_name);
 		ft_putendl(":");
 	}
-	if ((file.fd = open(file.name, O_RDONLY)) == -1)
-	{
-		error(file.name, "Failed to open file");
-		return ;
-	}
-	ft_nm_2(&file);
+	start_parse_file(file_name);
 }

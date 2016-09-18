@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   archive_object_list_push_back.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 09:22:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/23 14:38:16 by acazuc           ###   ########.fr       */
+/*   Created: 2016/09/18 08:40:10 by acazuc            #+#    #+#             */
+/*   Updated: 2016/09/18 09:20:08 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTOTYPES_H
-# define PROTOTYPES_H
+#include "ft_nm.h"
 
-# include "buffer.h"
-# include "file.h"
-
-void	ft_nm(char *file_name, int print_name);
-int		parse_file(t_file *file);
-int		parse_file_header(t_file *file);
-void	print_file(t_file *file);
-void	buffer_read(t_buffer *buffer, void *dst, size_t len);
-
-#endif
+int		archive_files_push_back(t_ar_file_list **list, t_ar_file file)
+{
+	t_ar_file_list	*new;
+	t_ar_file_list	*tmp;
+	
+	if (!(new = malloc(sizeof(*new))))
+		return (0);
+	new->file = file;
+	new->next = NULL;
+	if (!(*list))
+	{
+		*list = new;
+		return (1);
+	}
+	tmp = *list;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+	return (1);
+}

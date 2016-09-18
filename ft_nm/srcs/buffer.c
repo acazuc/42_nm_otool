@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 09:22:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/23 14:38:16 by acazuc           ###   ########.fr       */
+/*   Created: 2016/09/18 06:34:00 by acazuc            #+#    #+#             */
+/*   Updated: 2016/09/18 07:56:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTOTYPES_H
-# define PROTOTYPES_H
+#include "ft_nm.h"
 
-# include "buffer.h"
-# include "file.h"
+int		buffer_read(t_buffer *buffer, void *addr, size_t len)
+{
+	if (buffer->position + len > buffer->length)
+		return (0);
+	ft_memcpy(addr, buffer->data + buffer->position, len);
+	buffer->position += len;
+	return (1);
+}
 
-void	ft_nm(char *file_name, int print_name);
-int		parse_file(t_file *file);
-int		parse_file_header(t_file *file);
-void	print_file(t_file *file);
-void	buffer_read(t_buffer *buffer, void *dst, size_t len);
-
-#endif
+int		buffer_set_position(t_buffer *buffer, size_t pos)
+{
+	if (pos > buffer->length)
+		return (0);
+	buffer->position = pos;
+	return (1);
+}

@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prototypes.h                                       :+:      :+:    :+:   */
+/*   archive_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 09:22:36 by acazuc            #+#    #+#             */
-/*   Updated: 2016/02/23 14:38:16 by acazuc           ###   ########.fr       */
+/*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
+/*   Updated: 2016/09/18 09:27:22 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTOTYPES_H
-# define PROTOTYPES_H
+#include "ft_nm.h"
 
-# include "buffer.h"
-# include "file.h"
+void	archive_print_file(t_archive *archive, t_ar_file *file)
+{
+	if (!parse_object(&file->object))
+		return ;
+	ft_putstr(archive->file->name);
+	ft_putchar('(');
+	ft_putstr(file->name);
+	ft_putendl("):");
+}
 
-void	ft_nm(char *file_name, int print_name);
-int		parse_file(t_file *file);
-int		parse_file_header(t_file *file);
-void	print_file(t_file *file);
-void	buffer_read(t_buffer *buffer, void *dst, size_t len);
+void	archive_print(t_archive *archive)
+{
+	t_ar_file_list *lst;
 
-#endif
+	lst = archive->files;
+	while (lst)
+	{
+		archive_print_file(archive, &lst->file);
+		lst = lst->next;
+	}
+}
