@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 09:41:52 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 13:31:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_archive(t_file *file)
 		}
 		tmp_file.object.buffer.data = file->buffer.data + file->buffer.position;
 		tmp_file.object.buffer.position = 0;
-		tmp_file.object.buffer.length = ft_atoi(file_header.size) - 20;
+		tmp_file.object.buffer.length = ft_atol(file_header.size) - 20;
 		if (!(buffer_read(&file->buffer, tmp_file.object.buffer.data, tmp_file.object.buffer.length)))
 		{
 			file_error(file, "Invalid archive data");

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 12:56:04 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 13:53:32 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_ar_file		t_ar_file;
 typedef struct s_archive		t_archive;
 typedef struct s_segment_cmd	t_segment_cmd;
 typedef struct s_object_cmd		t_object_cmd;
+typedef struct s_section		t_section;
+typedef struct s_section_list	t_section_list;
 
 void		ft_nm(char *file_name, int print_name);
 void		parse_file(t_file *file, int print_name);
@@ -48,8 +50,11 @@ void		print_object(t_object *object);
 size_t		get_object_header_size(t_object *object);
 int			parse_object_segments(t_object *object);
 int			parse_object_command_symtab(t_object *object, t_object_cmd *object_cmd);
+int			parse_object_command_segment_32(t_object *object, t_object_cmd *object_cmd);
+int			parse_object_command_segment_64(t_object *object, t_object_cmd *object_cmd);
 int			buffer_read_string(t_buffer *buffer, char **addr);
 void		print_hex_4(uint32_t val);
+void		print_hex_8(uint64_t val);
 
 enum								e_byte_order
 {
@@ -82,6 +87,7 @@ struct								s_object
 	enum e_byte_order				byte_order;
 	char							is_64;
 	t_buffer						buffer;
+	t_section_list					*sections;
 };
 
 struct								s_ar_file_header
@@ -128,7 +134,17 @@ struct								s_object_cmd
 	struct load_command				load_command;
 	char							*data;
 	size_t							length;
+};
 
+struct								s_section
+{
+	char							*name;
+};
+
+struct								s_section_list
+{
+	t_section						section;
+	t_section_list					*next;
 };
 
 #endif

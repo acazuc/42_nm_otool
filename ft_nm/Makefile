@@ -6,7 +6,7 @@
 #    By: acazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/18 12:53:45 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/18 13:14:33 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_NAME = main.c \
 			parse_object_segments.c \
 			parse_object_command_symtab.c \
 			print_hex.c \
+			parse_object_command_segment.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
