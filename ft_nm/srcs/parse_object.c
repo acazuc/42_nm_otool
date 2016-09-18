@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 10:12:32 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 10:48:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ static int	parse_object_header(t_object *object)
 {
 	size_t	header_size;
 
-	if (object->is_64)
-		header_size = sizeof(object->header.header_64);
-	else
-		header_size = sizeof(object->header.header_32);
-	header_size -= 4;
-	if (!(buffer_read(&object->buffer, (void*)&object->header.header_64 + sizeof(object->header.magic), header_size)))
+	header_size = get_object_header_size(object);
+	if (!(buffer_read(&object->buffer, (void*)&object->header.header_64
+					+ sizeof(object->header.magic)
+					, header_size - sizeof(object->header.magic))))
 		return (0);
 	return (1);
 }
@@ -44,30 +42,33 @@ int		parse_object(t_object *object)
 {
 	if (!(parse_object_magic(object)))
 		return (0);
-	ft_putendl(object->is_64 ? "64" : "32");
-	ft_putendl(object->byte_order == BO_LITTLE ? "Little Endian" : "Big Endian");
+	ft_putstr(object->is_64 ? "64 " : "32 ");
+	ft_putstr(object->byte_order == BO_LITTLE ? "LE " : "BE ");
 	if (!(parse_object_header(object)))
 		return (0);
 	uint32_t filetype = object->header.header_32.filetype;
 	if (filetype & MH_OBJECT)
-		ft_putendl("MH_OBJECT");
+		ft_putstr("MH_OBJECT ");
 	if (filetype & MH_EXECUTE)
-		ft_putendl("MH_EXECUTE");
+		ft_putstr("MH_EXECUTE ");
 	if (filetype & MH_FVMLIB)
-		ft_putendl("MH_FVMLIB");
+		ft_putstr("MH_FVMLIB ");
 	if (filetype & MH_CORE)
-		ft_putendl("MH_CORE");
+		ft_putstr("MH_CORE ");
 	if (filetype & MH_PRELOAD)
-		ft_putendl("MH_PRELOAD");
+		ft_putstr("MH_PRELOAD ");
 	if (filetype & MH_DYLIB)
-		ft_putendl("MH_DYLIB");
+		ft_putstr("MH_DYLIB ");
 	if (filetype & MH_BUNDLE)
-		ft_putendl("MH_BUNDLE");
+		ft_putstr("MH_BUNDLE ");
 	if (filetype & MH_DYLIB_STUB)
-		ft_putendl("MH_DYLIB_STUB");
+		ft_putstr("MH_DYLIB_STUB ");
 	if (filetype & MH_DSYM)
-		ft_putendl("MH_DSYM");
+		ft_putstr("MH_DSYM ");
 	if (filetype & MH_KEXT_BUNDLE)
-		ft_putendl("MH_KEXT_BUNDLE");
+		ft_putstr("MH_KEXT_BUNDLE ");
+	ft_putchar('\n');
+	if (!parse_object_segments(object))
+		return (0);
 	return (1);
 }

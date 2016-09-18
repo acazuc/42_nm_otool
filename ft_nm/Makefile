@@ -6,7 +6,7 @@
 #    By: acazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/18 09:44:26 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/18 12:53:45 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,10 @@ SRCS_NAME = main.c \
 			archive_files_push_back.c \
 			archive_print.c \
 			parse_object.c \
+			get_object_header_size.c \
+			parse_object_segments.c \
+			parse_object_command_symtab.c \
+			print_hex.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

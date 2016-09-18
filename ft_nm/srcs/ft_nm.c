@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 10:05:16 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 10:15:15 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static void		start_parse_file(char *name)
+static void		start_parse_file(char *name, int print_name)
 {
 	t_file			file;
 	struct stat		file_stat;
@@ -39,16 +39,10 @@ static void		start_parse_file(char *name)
 		file_error(&file, "Failed to map file");
 		return ;
 	}
-	parse_file(&file);
+	parse_file(&file, print_name);
 }
 
 void			ft_nm(char *file_name, int print_name)
 {
-	if (print_name)
-	{
-		ft_putchar('\n');
-		ft_putstr(file_name);
-		ft_putendl(":");
-	}
-	start_parse_file(file_name);
+	start_parse_file(file_name, print_name);
 }

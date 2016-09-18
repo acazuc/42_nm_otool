@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 10:12:19 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 10:16:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ static void		parse_file_file(t_file *file)
 		return ;
 }
 
-void			parse_file(t_file *file)
+void			parse_file(t_file *file, int print_name)
 {
 	if (parse_file_is_archive(file))
 	{
 		ft_putendl("Static archive file");
 		parse_archive(file);
 		return ;
+	}
+	if (print_name)
+	{
+		ft_putchar('\n');
+		ft_putstr(file->name);
+		ft_putendl(":");
 	}
 	parse_file_file(file);
 }
