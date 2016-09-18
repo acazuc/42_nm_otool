@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 07:34:07 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 10:05:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void		start_parse_file(char *name)
 		return ;
 	}
 	parse_file(&file);
-	print_file(&file);
 }
 
 void			ft_nm(char *file_name, int print_name)

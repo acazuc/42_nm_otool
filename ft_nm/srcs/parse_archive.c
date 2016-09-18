@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 09:18:49 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 09:41:52 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	parse_archive(t_file *file)
 			return ;
 		}
 		tmp_file.header = file_header;
-		tmp_file.object.file = file;
 		archive_files_push_back(&archive.files, tmp_file);
 	}
 	archive_print(&archive);

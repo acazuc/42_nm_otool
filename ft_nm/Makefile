@@ -6,13 +6,13 @@
 #    By: acazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/18 09:27:33 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/18 09:44:26 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_nm
 
-CFLAGS = -Wall -Wextra -Werror -Ofast
+CFLAGS = -Wall -Wextra -Werror -Ofast -g
 
 CC = gcc
 
