@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:47:20 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:16:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		parse_file_file(t_file *file)
 
 	object.buffer = file->buffer;
 	if (!(parse_object(&object)))
-		return 
+		return ;
 	print_object(&object);
 }
 
@@ -43,7 +43,8 @@ void			parse_file(t_file *file, int print_name)
 {
 	if (parse_file_is_archive(file))
 	{
-		parse_archive(file);
+		if (!parse_archive(file))
+			ft_putendl_fd("Invalid archive", 2);
 		return ;
 	}
 	if (print_name)

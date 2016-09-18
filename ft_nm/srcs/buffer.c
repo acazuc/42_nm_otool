@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 06:34:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 12:44:41 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:13:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ int		buffer_set_position(t_buffer *buffer, size_t pos)
 
 int		buffer_read_string(t_buffer *buffer, char **addr)
 {
-	char	*tmp;
+	char	tmp[2];
 	char	*str;
 	char	c;
 
-	if (!(tmp = malloc(sizeof(*tmp) * 2)))
-		return (0);
 	tmp[1] = '\0';
 	if (!(str = malloc(sizeof(*str))))
 		return (0);
@@ -46,16 +44,11 @@ int		buffer_read_string(t_buffer *buffer, char **addr)
 		if (c == '\0')
 		{
 			*addr = str;
-			free(tmp);
 			return (1);
 		}
 		tmp[0] = c;
 		if (!(str = ft_strjoin_free1(str, tmp)))
-		{
-			free(tmp);
 			return (0);
-		}
 	}
-	free(tmp);
 	return (0);
 }

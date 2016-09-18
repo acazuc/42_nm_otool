@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 11:43:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:37:24 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:16:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	parse_object_command_symtab_32(t_object *object
 		i++;
 	}
 	return (1);
-
 }
 
 static int	parse_object_command_symtab_64(t_object *object

@@ -6,7 +6,7 @@
 #    By: acazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/18 14:30:05 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/18 15:08:16 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRCS_NAME = main.c \
 			ft_nm.c \
 			parse_file.c \
 			print_file.c \
-			parse_file_header.c \
 			buffer.c \
 			file_error.c \
 			parse_archive.c \

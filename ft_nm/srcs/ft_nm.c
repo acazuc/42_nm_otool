@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 10:15:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:09:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ static void		start_parse_file(char *name, int print_name)
 	}
 	file.buffer.position = 0;
 	file.buffer.length = file_stat.st_size;
-	if ((file.buffer.data = mmap(NULL, file_stat.st_size
-					, PROT_READ | PROT_WRITE
-					, MAP_PRIVATE, file.fd, 0)) == MAP_FAILED)
+	if ((file.buffer.data = mmap(NULL, file_stat.st_size, PROT_READ
+					| PROT_WRITE, MAP_PRIVATE, file.fd, 0)) == MAP_FAILED)
 	{
 		close(file.fd);
 		file_error(&file, "Failed to map file");

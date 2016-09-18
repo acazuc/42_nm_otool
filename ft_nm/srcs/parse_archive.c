@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 13:31:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:14:05 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	parse_archive(t_file *file)
+int		parse_archive(t_file *file)
 {
 	t_archive			archive;
 	t_ar_file_header	file_header;
@@ -23,25 +23,19 @@ void	parse_archive(t_file *file)
 	while (file->buffer.position != file->buffer.length)
 	{
 		if (!parse_archive_file_header(file, &file_header))
-		{
-			file_error(file, "Invalid archive header");
-			return ;
-		}
+			return (0);
 		if (!(buffer_read(&file->buffer, tmp_file.name, 20)))
-		{
-			file_error(file, "Invalid archive file name");
-			return ;
-		}
-		tmp_file.object.buffer.data = file->buffer.data + file->buffer.position;
+			return (0);
+		tmp_file.object.buffer.data = file->buffer.data
+			+ file->buffer.position;
 		tmp_file.object.buffer.position = 0;
 		tmp_file.object.buffer.length = ft_atol(file_header.size) - 20;
-		if (!(buffer_read(&file->buffer, tmp_file.object.buffer.data, tmp_file.object.buffer.length)))
-		{
-			file_error(file, "Invalid archive data");
-			return ;
-		}
+		if (!(buffer_read(&file->buffer, tmp_file.object.buffer.data
+						, tmp_file.object.buffer.length)))
+			return (0);
 		tmp_file.header = file_header;
 		archive_files_push_back(&archive.files, tmp_file);
 	}
 	archive_print(&archive);
+	return (1);
 }

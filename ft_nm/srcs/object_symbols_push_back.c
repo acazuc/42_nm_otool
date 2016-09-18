@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:27:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 15:01:58 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:09:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static void		_swap(t_symbol_list *new, t_symbol_list *lst, t_symbol_list *prv
+static void		swap(t_symbol_list *new, t_symbol_list *lst, t_symbol_list *prv
 		, t_symbol_list **list)
 {
 	new->next = lst;
@@ -22,7 +22,7 @@ static void		_swap(t_symbol_list *new, t_symbol_list *lst, t_symbol_list *prv
 		(*list) = new;
 }
 
-static void		_insert(t_symbol_list **list, t_symbol_list *new)
+static void		insert(t_symbol_list **list, t_symbol_list *new)
 {
 	t_symbol_list		*prv;
 	t_symbol_list		*lst;
@@ -38,7 +38,7 @@ static void		_insert(t_symbol_list **list, t_symbol_list *new)
 	{
 		if (ft_strcmp(lst->symbol.name, new->symbol.name) >= 0)
 		{
-			_swap(new, lst, prv, list);
+			swap(new, lst, prv, list);
 			return ;
 		}
 		if (!lst->next)
@@ -51,14 +51,14 @@ static void		_insert(t_symbol_list **list, t_symbol_list *new)
 	}
 }
 
-int		object_symbols_push_back(t_symbol_list **list, t_symbol symbol)
+int				object_symbols_push_back(t_symbol_list **list, t_symbol symbol)
 {
-	t_symbol_list	*new;
+	t_symbol_list		*new;
 
 	if (!(new = malloc(sizeof(*new))))
 		return (0);
 	new->symbol = symbol;
 	new->next = NULL;
-	_insert(list, new);
+	insert(list, new);
 	return (1);
 }

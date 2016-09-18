@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:45:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/18 15:10:52 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char		get_section_letter(t_object *object, uint8_t section)
 			if (!ft_strcmp(lst->section.name, SECT_DATA))
 				return ('D');
 			else
-				return ('S');
+				return ('s');
 		}
 		i++;
 		lst = lst->next;
