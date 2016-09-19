@@ -6,19 +6,19 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/19 11:47:08 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/19 15:22:54 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_nm
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -g -m32
+CFLAGS = -Wall -Wextra -Werror -Ofast -g
 
 CC = gcc
 
 INCLUDES_PATH = includes/
 
-SRCS_PATH = srcs/
+SRCS_PATH = src/
 
 SRCS_NAME = main.c \
 			ft_nm.c \
@@ -41,10 +41,14 @@ SRCS_NAME = main.c \
 			object_symbols_push_back.c \
 			struct_free.c \
 			archive_parse_symdef.c \
+			parse_fat.c \
+			fat_header_reverse.c \
+			fat_arch_reverse.c \
+			fat_files_push_back.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
-OBJS_PATH = objs/
+OBJS_PATH = obj/
 
 OBJS_NAME = $(SRCS_NAME:.c=.o)
 

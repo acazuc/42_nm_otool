@@ -6,18 +6,19 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 11:46:15 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 15:32:03 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_NM_H
 # define FT_NM_H
 
-# include "../../libft/includes/libft.h"
+# include "../../libft/include/libft.h"
 # include <mach-o/ranlib.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
 # include <mach-o/stab.h>
+# include <mach-o/fat.h>
 # include <sys/stat.h>
 # include <sys/mman.h>
 # include <fcntl.h>
@@ -35,6 +36,9 @@ typedef struct s_section			t_section;
 typedef struct s_section_list		t_section_list;
 typedef struct s_symbol				t_symbol;
 typedef struct s_symbol_list		t_symbol_list;
+typedef struct s_fat				t_fat;
+typedef struct s_fat_file			t_fat_file;
+typedef struct s_fat_file_list		t_fat_file_list;
 
 void								ft_nm(char *file_name
 		, int print_name);
@@ -43,6 +47,8 @@ void								parse_file(t_file *file
 int									parse_file_header(t_file *file);
 void								print_file(t_file *file);
 int									buffer_read(t_buffer *buffer
+		, void *addr, size_t len);
+int									buffer_read_le(t_buffer *buffer
 		, void *addr, size_t len);
 int									buffer_set_position(t_buffer *buffer
 		, size_t pos);
@@ -74,6 +80,13 @@ int									object_symbols_push_back(
 		t_symbol_list **list, t_symbol symbol);
 int									archive_parse_symdef(
 		t_archive *archive, t_ar_file *file);
+int									parse_fat(t_file *file);
+void								fat_header_reverse(
+		struct fat_header *fat_header);
+void								fat_arch_reverse(
+		struct fat_arch *fat_arch);
+int									fat_files_push_back(
+		t_fat *fat, t_fat_file fat_file);
 
 enum								e_byte_order
 {
@@ -185,6 +198,25 @@ struct								s_symbol_list
 {
 	t_symbol						symbol;
 	t_symbol_list					*next;
+};
+
+struct								s_fat
+{
+	enum e_byte_order				byte_order;
+	t_file							*file;
+	t_fat_file_list					*files;
+};
+
+struct								s_fat_file
+{
+	t_object						object;
+	struct fat_arch					fat_arch;
+};
+
+struct								s_fat_file_list
+{
+	t_fat_file						file;
+	t_fat_file_list					*next;
 };
 
 #endif

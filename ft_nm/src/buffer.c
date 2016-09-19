@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 06:34:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 09:17:51 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 13:22:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@ int		buffer_read(t_buffer *buffer, void *addr, size_t len)
 		return (0);
 	ft_memcpy(addr, buffer->data + buffer->position, len);
 	buffer->position += len;
+	return (1);
+}
+
+int		buffer_read_le(t_buffer *buffer, void *addr, size_t len)
+{
+	size_t	i;
+	char	tmp;
+
+	if (!(buffer_read(buffer, addr, len)))
+		return (0);
+	i = 0;
+	while (i < len / 2)
+	{
+		tmp = ((char*)addr)[i];
+		((char*)addr)[i] = ((char*)addr)[len - i - 1];
+		((char*)addr)[len - i - 1] = tmp;
+		i++;
+	}
 	return (1);
 }
 
