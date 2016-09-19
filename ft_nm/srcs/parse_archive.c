@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 10:45:35 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 11:14:09 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ static int		put_file_name(t_ar_file *file, t_file *archive_file)
 	return (1);
 }
 
-int		parse_archive(t_file *file)
+int				parse_archive(t_file *file)
 {
 	t_archive			archive;
 	t_ar_file_header	file_header;
 	t_ar_file			tmp_file;
-
 
 	archive.file = file;
 	archive.files = NULL;

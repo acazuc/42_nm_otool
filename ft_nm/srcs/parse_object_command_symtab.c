@@ -6,11 +6,19 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 11:43:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 08:45:56 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 11:11:40 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+static void	affect_symbol_vals(t_symbol *symbol, uint64_t value
+		, uint8_t section, uint8_t external)
+{
+	symbol->value = value;
+	symbol->section = section;
+	symbol->external = external;
+}
 
 static int	parse_object_command_symtab_32(t_object *object
 		, t_object_cmd *object_cmd)
@@ -28,14 +36,14 @@ static int	parse_object_command_symtab_32(t_object *object
 						, symtab_command->symoff + sizeof(nlist) * i)))
 			return (0);
 		if (!(buffer_read(&object->buffer, &nlist, sizeof(nlist))))
-			return (0);;
+			return (0);
 		if (nlist.n_un.n_strx == 0 || nlist.n_type & N_STAB)
 			continue;
 		if (!(symbol.name = ft_strdup((char*)(object->buffer.data
 						+ symtab_command->stroff + nlist.n_un.n_strx))))
 			return (0);
-		symbol.value = nlist.n_value;
-		symbol.section = nlist.n_sect;
+		affect_symbol_vals(&symbol, nlist.n_value, nlist.n_sect
+				, nlist.n_type & N_EXT);
 		if (!object_symbols_push_back(&object->symbols, symbol))
 			return (0);
 	}
@@ -64,9 +72,8 @@ static int	parse_object_command_symtab_64(t_object *object
 		if (!(symbol.name = ft_strdup((char*)(object->buffer.data
 							+ symtab_command->stroff + nlist.n_un.n_strx))))
 			return (0);
-		symbol.value = nlist.n_value;
-		symbol.section = nlist.n_sect;
-		symbol.external = nlist.n_type & N_EXT;
+		affect_symbol_vals(&symbol, nlist.n_value, nlist.n_sect
+				, nlist.n_type & N_EXT);
 		if (!object_symbols_push_back(&object->symbols, symbol))
 			return (0);
 	}

@@ -6,11 +6,33 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 08:55:43 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 11:07:05 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+static int		open_fstat_s_isdir(t_file *file, struct stat *file_stat)
+{
+	if ((file->fd = open(file->name, O_RDONLY)) == -1)
+	{
+		file_error(file, "Can't open");
+		return (0);
+	}
+	if (fstat(file->fd, file_stat) == -1)
+	{
+		close(file->fd);
+		file_error(file, "Can't stat");
+		return (0);
+	}
+	if (S_ISDIR(file_stat->st_mode))
+	{
+		close(file->fd);
+		file_error(file, "Is a directory");
+		return (0);
+	}
+	return (1);
+}
 
 static void		start_parse_file(char *name, int print_name)
 {
@@ -18,23 +40,8 @@ static void		start_parse_file(char *name, int print_name)
 	struct stat		file_stat;
 
 	file.name = name;
-	if ((file.fd = open(file.name, O_RDONLY)) == -1)
-	{
-		file_error(&file, "Can't open");
+	if (!open_fstat_s_isdir(&file, &file_stat))
 		return ;
-	}
-	if (fstat(file.fd, &file_stat) == -1)
-	{
-		close(file.fd);
-		file_error(&file, "Can't stat");
-		return ;
-	}
-	if (S_ISDIR(file_stat.st_mode))
-	{
-		close(file.fd);
-		file_error(&file, "Is a directory");
-		return ;
-	}
 	file.buffer.position = 0;
 	file.buffer.length = file_stat.st_size;
 	if ((file.buffer.data = mmap(NULL, file_stat.st_size, PROT_READ
