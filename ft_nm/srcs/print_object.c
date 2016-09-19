@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 15:10:52 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 08:47:38 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static char		get_section_letter(t_object *object, uint8_t section)
 {
 	t_section_list	*lst;
-	uint8_t			i;
+	int16_t			i;
 
-	i = 1;
+	i = 0;
 	lst = object->sections;
 	while (lst)
 	{
-		if (i == section)
+		if (++i == section)
 		{
 			if (!ft_strcmp(lst->section.name, SECT_TEXT))
 				return ('T');
@@ -30,9 +30,8 @@ static char		get_section_letter(t_object *object, uint8_t section)
 			if (!ft_strcmp(lst->section.name, SECT_DATA))
 				return ('D');
 			else
-				return ('s');
+				return ('S');
 		}
-		i++;
 		lst = lst->next;
 	}
 	return ('U');
@@ -40,12 +39,12 @@ static char		get_section_letter(t_object *object, uint8_t section)
 
 static void		print_object_letter(t_object *object, t_symbol *symbol)
 {
-	if (symbol->section == 0)
-	{
-		ft_putchar('U');
-		return ;
-	}
-	ft_putchar(get_section_letter(object, symbol->section));
+	char c;
+
+	c = get_section_letter(object, symbol->section);
+	if (!symbol->external)
+		c -= 'A' - 'a';
+	ft_putchar(c);
 }
 
 void			print_object(t_object *object)

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 15:14:11 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 08:45:40 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ struct								s_symbol
 	char							*name;
 	uint64_t						value;
 	uint8_t							section;
+	uint8_t							external;
 };
 
 struct								s_symbol_list
