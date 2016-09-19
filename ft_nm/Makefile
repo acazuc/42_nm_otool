@@ -6,7 +6,7 @@
 #    By: acazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/19 08:40:51 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/19 09:31:41 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS_NAME = main.c \
 			print_object.c \
 			object_symbols_push_back.c \
 			struct_free.c \
+			archive_parse_symdef.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

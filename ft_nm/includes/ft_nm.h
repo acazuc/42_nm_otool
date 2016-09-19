@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 08:45:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 10:50:08 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../../libft/includes/libft.h"
 
+# include <mach-o/ranlib.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
 # include <mach-o/stab.h>
@@ -59,6 +60,7 @@ void		print_hex_4(uint32_t val);
 void		print_hex_8(uint64_t val);
 int			object_sections_push_back(t_section_list **list, t_section section);
 int			object_symbols_push_back(t_symbol_list **list, t_symbol symbol);
+int			archive_parse_symdef(t_archive *archive, t_ar_file *file);
 
 enum								e_byte_order
 {
@@ -108,7 +110,9 @@ struct								s_ar_file_header
 
 struct								s_ar_file
 {
-	char							name[21];
+	char							*name;
+	size_t							name_length;
+	uint32_t						ran_strx;
 	t_object						object;
 	t_ar_file_header				header;
 };

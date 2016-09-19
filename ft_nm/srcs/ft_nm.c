@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 15:09:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 08:55:43 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@ static void		start_parse_file(char *name, int print_name)
 	file.name = name;
 	if ((file.fd = open(file.name, O_RDONLY)) == -1)
 	{
-		file_error(&file, "Failed to open file");
+		file_error(&file, "Can't open");
 		return ;
 	}
 	if (fstat(file.fd, &file_stat) == -1)
 	{
 		close(file.fd);
-		file_error(&file, "Failed to read stat from file");
+		file_error(&file, "Can't stat");
+		return ;
+	}
+	if (S_ISDIR(file_stat.st_mode))
+	{
+		close(file.fd);
+		file_error(&file, "Is a directory");
 		return ;
 	}
 	file.buffer.position = 0;
@@ -35,7 +41,7 @@ static void		start_parse_file(char *name, int print_name)
 					| PROT_WRITE, MAP_PRIVATE, file.fd, 0)) == MAP_FAILED)
 	{
 		close(file.fd);
-		file_error(&file, "Failed to map file");
+		file_error(&file, "Can't mmap");
 		return ;
 	}
 	parse_file(&file, print_name);
