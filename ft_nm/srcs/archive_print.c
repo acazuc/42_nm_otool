@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 10:33:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 11:01:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 static void		archive_print_file(t_archive *archive, t_ar_file *file)
 {
 	if (!parse_object(&file->object))
-	{
-		ft_putstr("\e[0;31mFailed to parse ");
-		ft_putendl(file->name);
-		ft_putstr("\e[0;0m");
 		return ;
-	}
 	ft_putchar('\n');
 	ft_putstr(archive->file->name);
 	ft_putchar('(');
