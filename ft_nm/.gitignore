@@ -1,4 +1,3 @@
-objs
+obj
 *.swp
 ft_nm
-libz.dylib

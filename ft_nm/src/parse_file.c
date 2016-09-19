@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 14:45:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 16:06:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int		parse_file_is_fat(t_file *file)
 	{
 		return (1);
 	}
+	buffer_set_position(&file->buffer, 0);
 	return (0);
 }
 
