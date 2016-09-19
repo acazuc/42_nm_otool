@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 16:06:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 16:20:08 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	parse_object_header(t_object *object)
 					+ sizeof(object->header.magic)
 					, header_size - sizeof(object->header.magic))))
 		return (0);
+	if (object->byte_order == BO_LITTLE)
+		mach_header_reverse(&object->header.header_64);
 	return (1);
 }
 

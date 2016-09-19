@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 15:32:03 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 16:24:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void								fat_arch_reverse(
 		struct fat_arch *fat_arch);
 int									fat_files_push_back(
 		t_fat *fat, t_fat_file fat_file);
+void								mach_header_reverse(
+		struct mach_header_64 *mach_header);
 
 enum								e_byte_order
 {

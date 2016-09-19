@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/19 15:22:54 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/19 16:24:25 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS_NAME = main.c \
 			fat_header_reverse.c \
 			fat_arch_reverse.c \
 			fat_files_push_back.c \
+			mach_header_reverse.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
