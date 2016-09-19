@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 15:11:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/19 08:24:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	parse_object_header(t_object *object)
 int			parse_object(t_object *object)
 {
 	object->sections = NULL;
+	object->symbols = NULL;
 	if (!(parse_object_magic(object)))
 		return (0);
 	if (!(parse_object_header(object)))
