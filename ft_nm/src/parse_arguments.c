@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:24:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 12:52:17 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:04:43 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int			parse_arguments(t_params *params, int ac, char **av)
 {
 	int		i;
 
-	ft_bzero(params, sizeof(*params));
 	i = 1;
 	while (i < ac)
 	{

@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 12:12:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:00:48 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static int		put_file_name(t_ar_file *file, t_file *archive_file)
+static int			put_file_name(t_ar_file *file, t_file *archive_file)
 {
 	file->name_length = ft_atoi(file->header.identifier + 3);
 	if (!(file->name = malloc(sizeof(*file->name) * file->name_length)))
@@ -22,21 +22,30 @@ static int		put_file_name(t_ar_file *file, t_file *archive_file)
 	return (1);
 }
 
-int				parse_archive(t_file *file)
+static t_archive	*parse_archive_free(t_archive *archive)
 {
-	t_archive			archive;
+	struct_archive_free(archive);
+	free(archive);
+	return (NULL);
+}
+
+t_archive			*parse_archive(t_file *file)
+{
+	t_archive			*archive;
 	t_ar_file_header	file_header;
 	t_ar_file			tmp_file;
 
-	archive.file = file;
-	archive.files = NULL;
+	if (!(archive = malloc(sizeof(*archive))))
+		return (NULL);
+	archive->file = file;
+	archive->files = NULL;
 	while (file->buffer.position != file->buffer.length)
 	{
 		if (!parse_archive_file_header(file, &file_header))
-			return (0);
+			return (parse_archive_free(archive));
 		tmp_file.header = file_header;
 		if (!(put_file_name(&tmp_file, file)))
-			return (0);
+			return (parse_archive_free(archive));
 		tmp_file.object.buffer.data = file->buffer.data
 			+ file->buffer.position;
 		tmp_file.object.buffer.position = 0;
@@ -44,9 +53,8 @@ int				parse_archive(t_file *file)
 			- tmp_file.name_length;
 		if (!(buffer_set_position(&file->buffer, file->buffer.position
 						+ tmp_file.object.buffer.length)))
-			return (0);
-		archive_files_push_back(&archive.files, tmp_file);
+			return (parse_archive_free(archive));
+		archive_files_push_back(&archive->files, tmp_file);
 	}
-	archive_print(&archive);
-	return (1);
+	return (archive);
 }

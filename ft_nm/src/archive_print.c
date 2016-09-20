@@ -6,13 +6,14 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 11:01:39 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:05:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static void		archive_print_file(t_archive *archive, t_ar_file *file)
+static void		archive_print_file(t_env *env, t_archive *archive
+		, t_ar_file *file)
 {
 	if (!parse_object(&file->object))
 		return ;
@@ -21,7 +22,7 @@ static void		archive_print_file(t_archive *archive, t_ar_file *file)
 	ft_putchar('(');
 	ft_putstr(file->name);
 	ft_putendl("):");
-	print_object(&file->object);
+	print_object(env, &file->object);
 }
 
 static int		check_reorder_symdef(t_archive *archive)
@@ -42,7 +43,7 @@ static int		check_reorder_symdef(t_archive *archive)
 	return (1);
 }
 
-void			archive_print(t_archive *archive)
+void			archive_print(t_env *env ,t_archive *archive)
 {
 	t_ar_file_list	*lst;
 
@@ -53,7 +54,7 @@ void			archive_print(t_archive *archive)
 	{
 		if (ft_strcmp(lst->file.name, SYMDEF)
 				&& ft_strcmp(lst->file.name, SYMDEF_SORTED))
-			archive_print_file(archive, &lst->file);
+			archive_print_file(env, archive, &lst->file);
 		lst = lst->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:34:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 12:51:29 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:04:34 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,21 @@ int		main(int ac, char **av)
 	t_env	env;
 	int		i;
 
+	ft_bzero(&env, sizeof(env));
 	if (ac == 1)
-		ft_nm("a.out", 0);
+		ft_nm(&env, "a.out", 0);
 	else if (ac > 1)
 	{
 		i = run_parse_arguments(&env.params, ac, av);
 		if (!i)
 			return (EXIT_FAILURE);
 		if (i >= ac)
-			ft_nm("a.out", 0);
+			ft_nm(&env, "a.out", 0);
 		else
 		{
 			while (i < ac)
 			{
-				ft_nm(av[i], ac > 2);
+				ft_nm(&env, av[i], ac > 2);
 				i++;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 12:50:18 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:19:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef struct s_symbol_list		t_symbol_list;
 typedef struct s_env				t_env;
 typedef struct s_params				t_params;
 
-void								ft_nm(char *file_name
+void								ft_nm(t_env *env, char *file_name
 		, int print_name);
-void								parse_file(t_file *file
+void								parse_file(t_env *env, t_file *file
 		, int print_name);
 int									parse_file_header(t_file *file);
 void								print_file(t_file *file);
@@ -58,14 +58,14 @@ int									buffer_set_position(t_buffer *buffer
 		, size_t pos);
 void								file_error(t_file *file
 		, char *message);
-int									parse_archive(t_file *file);
+t_archive							*parse_archive(t_file *file);
 int									parse_archive_file_header(t_file *file
 		, t_ar_file_header *f);
 int									archive_files_push_back(
 		t_ar_file_list **list, t_ar_file file);
-void								archive_print(t_archive *archive);
+void								archive_print(t_env *env, t_archive *archive);
 int									parse_object(t_object *object);
-void								print_object(t_object *object);
+void								print_object(t_env *env, t_object *object);
 int									parse_object_commands(t_object *object);
 int									parse_object_command_symtab(
 		t_object *object);
@@ -79,7 +79,8 @@ int									object_symbols_push_back(
 		t_symbol_list **list, t_symbol symbol);
 int									archive_parse_symdef(
 		t_archive *archive, t_ar_file *file);
-int									parse_fat(t_file *file);
+t_fat								*parse_fat(t_file *file);
+void								print_fat(t_env *env, t_fat *fat);
 void								fat_header_reverse(
 		struct fat_header *fat_header);
 void								fat_arch_reverse(
@@ -127,6 +128,10 @@ void								struct_section_free(
 
 void								struct_object_free(
 		t_object *object);
+void								struct_archive_free(
+		t_archive *archive);
+void								struct_fat_free(
+		t_fat *fat);
 t_section							*get_section_by_index(
 		t_segment_list *list, uint8_t index);
 char								get_symbol_letter(

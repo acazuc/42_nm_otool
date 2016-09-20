@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/20 12:46:23 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 13:08:25 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS_NAME = main.c \
 			struct_free.c \
 			archive_parse_symdef.c \
 			parse_fat.c \
+			print_fat.c \
 			fat_header_reverse.c \
 			fat_arch_reverse.c \
 			fat_files_push_back.c \
