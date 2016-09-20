@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_symbols_push_back.c                         :+:      :+:    :+:   */
+/*   struct_symbol_list_push_back.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:27:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 09:44:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:02:17 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void		insert(t_symbol_list **list, t_symbol_list *new)
 	}
 }
 
-int				object_symbols_push_back(t_symbol_list **list, t_symbol symbol)
+int				struct_symbol_list_push_back(t_symbol_list **list, t_symbol symbol)
 {
 	t_symbol_list		*new;
 

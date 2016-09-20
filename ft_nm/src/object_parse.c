@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_object.c                                     :+:      :+:    :+:   */
+/*   object_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 10:27:14 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:51:35 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static int	parse_object_magic(t_object *object)
+static int	object_parse_magic(t_object *object)
 {
 	uint32_t	magic;
 
@@ -31,15 +31,15 @@ static int	parse_object_magic(t_object *object)
 	return (1);
 }
 
-int			parse_object(t_object *object)
+int			object_parse(t_object *object)
 {
 	object->segments = NULL;
 	object->symbols = NULL;
-	if (!parse_object_magic(object))
+	if (!object_parse_magic(object))
 		return (0);
-	if (!struct_object_header_read(object))
+	if (!struct_object_header_read(object, &object->header))
 		return (0);
-	if (!parse_object_commands(object))
+	if (!object_parse_commands(object))
 		return (0);
 	return (1);
 }

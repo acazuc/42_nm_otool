@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_archive_file_header.c                        :+:      :+:    :+:   */
+/*   archive_parse_file_header.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 08:14:43 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 10:44:10 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:49:29 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		parse_archive_file_header(t_file *file, t_ar_file_header *file_header)
+int		archive_parse_file_header(t_file *file, t_ar_file_header *file_header)
 {
 	ft_bzero(file_header->identifier, 17);
 	if (!(buffer_read(&file->buffer, file_header->identifier, 16)))

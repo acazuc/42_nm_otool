@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/20 13:08:25 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 14:02:45 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,27 +26,27 @@ SRCS_NAME = main.c \
 			print_file.c \
 			buffer.c \
 			file_error.c \
-			parse_archive.c \
-			parse_archive_file_header.c \
+			archive_parse.c \
+			archive_parse_file_header.c \
+			archive_parse_symdef.c \
 			archive_files_push_back.c \
 			archive_print.c \
-			parse_object.c \
-			parse_object_commands.c \
-			parse_object_command_symtab.c \
+			object_parse.c \
+			object_parse_commands.c \
+			object_parse_command_symtab.c \
+			object_parse_command_segment.c \
 			print_hex.c \
-			parse_object_command_segment.c \
 			print_object.c \
-			object_symbols_push_back.c \
 			struct_free.c \
-			archive_parse_symdef.c \
-			parse_fat.c \
-			print_fat.c \
+			fat_parse.c \
+			fat_print.c \
 			fat_header_reverse.c \
 			fat_arch_reverse.c \
 			fat_files_push_back.c \
 			struct_object_header_read.c \
 			struct_mach_header_reverse.c \
 			struct_symbol_read.c \
+			struct_symbol_list_push_back.c \
 			struct_nlist_reverse.c \
 			struct_segment_read.c \
 			struct_segment_command_reverse.c \

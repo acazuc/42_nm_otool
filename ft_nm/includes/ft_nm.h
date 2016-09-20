@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:23:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:01:14 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,44 +58,48 @@ int									buffer_set_position(t_buffer *buffer
 		, size_t pos);
 void								file_error(t_file *file
 		, char *message);
-t_archive							*parse_archive(t_file *file);
-int									parse_archive_file_header(t_file *file
+t_archive							*archive_parse(t_file *file);
+int									archive_parse_file_header(t_file *file
 		, t_ar_file_header *f);
 int									archive_files_push_back(
 		t_ar_file_list **list, t_ar_file file);
 void								archive_print(t_env *env
 		, t_archive *archive);
-int									parse_object(t_object *object);
+int									object_parse(t_object *object);
+int									object_parse_commands(t_object *object);
+int									object_parse_command_symtab(
+		t_object *object);
+int									object_parse_command_segment_32(
+		t_object *object);
+int									object_parse_command_segment_64(
+		t_object *object);
 void								print_object(t_env *env, t_object *object);
-int									parse_object_commands(t_object *object);
-int									parse_object_command_symtab(
-		t_object *object);
-int									parse_object_command_segment_32(
-		t_object *object);
-int									parse_object_command_segment_64(
-		t_object *object);
 void								print_hex_4(uint32_t val);
 void								print_hex_8(uint64_t val);
-int									object_symbols_push_back(
-		t_symbol_list **list, t_symbol symbol);
 int									archive_parse_symdef(
 		t_archive *archive, t_ar_file *file);
-t_fat								*parse_fat(t_file *file);
-void								print_fat(t_env *env, t_fat *fat);
+t_fat								*fat_parse(t_file *file);
+void								fat_print(t_env *env, t_fat *fat);
 void								fat_header_reverse(
 		struct fat_header *fat_header);
 void								fat_arch_reverse(
 		struct fat_arch *fat_arch);
 int									fat_files_push_back(
 		t_fat *fat, t_fat_file fat_file);
+
 void								struct_mach_header_reverse_32(
 		struct mach_header *mach_header);
 void								struct_mach_header_reverse_64(
 		struct mach_header_64 *mach_header);
+
 int									struct_object_header_read(
-		t_object *object);
+		t_object *object, t_object_header *object_header);
+
 int									struct_symbol_read(
 		t_object *object, t_symbol *symbol);
+int									struct_symbol_list_push_back(
+		t_symbol_list **list, t_symbol symbol);
+
 void								struct_nlist_reverse_32(
 		struct nlist *nlist);
 void								struct_nlist_reverse_64(

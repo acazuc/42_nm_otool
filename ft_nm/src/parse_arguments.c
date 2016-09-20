@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:24:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:26:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:34:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	parse_arguments_char(t_params *params, char c)
 		params->r = 1;
 	else if (c == 'u')
 		params->u = 1;
-	else if (c == 'u')
+	else if (c == 'U')
 		params->u_caps = 1;
 	else if (c == 'm')
 		params->m = 1;
@@ -55,7 +55,9 @@ static int	parse_arguments_char(t_params *params, char c)
 		params->x = 1;
 	else if (c == 'j')
 		params->j = 1;
-	return (parse_arguents_char_2(params, c));
+	else
+		return (parse_arguments_char_2(params, c));
+	return (1);
 }
 
 static int	parse_arguments_string(t_params *params, char *str)
