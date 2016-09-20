@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 13:13:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:56:46 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:13:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	object_parse_command_segment(t_object *object
 	{
 		if (!struct_section_read(object, &section))
 			return (0);
+		section.buffer.data = object->buffer.data + section.offset;
+		section.buffer.position = 0;
+		section.buffer.length = section.size;
 		if (!struct_section_list_push_back(&segment.sections, section))
 			return (0);
 		i++;

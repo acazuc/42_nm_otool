@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:04:16 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:17:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,15 @@ int									object_parse_command_segment_32(
 		t_object *object);
 int									object_parse_command_segment_64(
 		t_object *object);
-void								print_object(t_env *env, t_object *object);
+void								object_print(t_env *env, t_object *object);
+void								object_print_symbol_value(
+		t_object *object, t_symbol *symbol);
+void								object_print_symbol_sect_letter(
+		t_object *object, t_symbol *symbol);
+t_section							*get_section_by_index(
+		t_segment_list *list, uint8_t index);
+char								get_symbol_letter(
+		t_object *object, t_symbol *symbol);
 void								print_hex_4(uint32_t val);
 void								print_hex_8(uint64_t val);
 int									archive_parse_symdef(
@@ -137,14 +145,6 @@ void								struct_archive_free(
 		t_archive *archive);
 void								struct_fat_free(
 		t_fat *fat);
-t_section							*get_section_by_index(
-		t_segment_list *list, uint8_t index);
-char								get_symbol_letter(
-		t_object *object, t_symbol *symbol);
-void								print_object_symbol_value(
-		t_object *object, t_symbol *symbol);
-void								print_object_symbol_sect_letter(
-		t_object *object, t_symbol *symbol);
 
 int									parse_arguments(
 		t_params *params, int ac, char **av);
@@ -299,7 +299,7 @@ struct								s_section
 	uint32_t						reloff;
 	uint32_t						nreloc;
 	uint32_t						flags;
-	t_buffer						*buffer;
+	t_buffer						buffer;
 };
 
 struct								s_section_list

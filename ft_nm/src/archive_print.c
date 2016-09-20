@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:58:43 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:16:34 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		archive_print_file(t_env *env, t_archive *archive
 	ft_putchar('(');
 	ft_putstr(file->name);
 	ft_putendl("):");
-	print_object(env, &file->object);
+	object_print(env, &file->object);
 }
 
 static int		check_reorder_symdef(t_archive *archive)

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 13:06:25 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:44:33 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:17:55 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	fat_print_test(t_env *env, t_fat *fat, int32_t arch)
 	{
 		if (lst->file.fat_arch.cputype == arch)
 		{
-			print_object(env, &lst->file.object);
+			object_print(env, &lst->file.object);
 			return (1);
 		}
 		lst = lst->next;

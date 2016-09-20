@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_object_symbol_value.c                        :+:      :+:    :+:   */
+/*   object_print_symbol_value.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:19:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 12:21:27 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:18:54 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	print_object_symbol_value(t_object *object, t_symbol *symbol)
+void	object_print_symbol_value(t_object *object, t_symbol *symbol)
 {
 	if (symbol->sect == 0)
 	{
