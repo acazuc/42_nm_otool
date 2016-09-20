@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/19 16:24:25 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 11:00:42 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,11 @@ SRCS_NAME = main.c \
 			archive_files_push_back.c \
 			archive_print.c \
 			parse_object.c \
-			get_object_header_size.c \
-			parse_object_segments.c \
+			parse_object_commands.c \
 			parse_object_command_symtab.c \
 			print_hex.c \
 			parse_object_command_segment.c \
-			object_sections_push_back.c \
+			object_segments_push_back.c \
 			print_object.c \
 			object_symbols_push_back.c \
 			struct_free.c \
@@ -45,7 +44,15 @@ SRCS_NAME = main.c \
 			fat_header_reverse.c \
 			fat_arch_reverse.c \
 			fat_files_push_back.c \
-			mach_header_reverse.c \
+			struct_object_header_read.c \
+			struct_mach_header_reverse.c \
+			struct_symbol_read.c \
+			struct_nlist_reverse.c \
+			struct_segment_read.c \
+			struct_segment_command_reverse.c \
+			struct_section_read.c \
+			struct_section_reverse.c \
+			segment_sections_push_back.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

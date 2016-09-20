@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 16:24:31 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 11:26:56 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@
 typedef struct s_file				t_file;
 typedef struct s_buffer				t_buffer;
 typedef struct s_object				t_object;
+typedef struct s_object_header		t_object_header;
 typedef struct s_ar_file_header		t_ar_file_header;
 typedef struct s_ar_file_list		t_ar_file_list;
 typedef struct s_ar_file			t_ar_file;
 typedef struct s_archive			t_archive;
-typedef struct s_segment_cmd		t_segment_cmd;
-typedef struct s_object_cmd			t_object_cmd;
+typedef struct s_segment			t_segment;
+typedef struct s_segment_list		t_segment_list;
 typedef struct s_section			t_section;
 typedef struct s_section_list		t_section_list;
 typedef struct s_symbol				t_symbol;
@@ -39,6 +40,7 @@ typedef struct s_symbol_list		t_symbol_list;
 typedef struct s_fat				t_fat;
 typedef struct s_fat_file			t_fat_file;
 typedef struct s_fat_file_list		t_fat_file_list;
+typedef struct s_nlist				t_nlist;
 
 void								ft_nm(char *file_name
 		, int print_name);
@@ -62,20 +64,18 @@ int									archive_files_push_back(
 void								archive_print(t_archive *archive);
 int									parse_object(t_object *object);
 void								print_object(t_object *object);
-size_t								get_object_header_size(t_object *object);
-int									parse_object_segments(t_object *object);
-int									parse_object_command_symtab(t_object *object
-		, t_object_cmd *o);
+int									parse_object_commands(t_object *object);
+int									parse_object_command_symtab(t_object *object);
 int									parse_object_command_segment_32(
-		t_object *object, t_object_cmd *o);
+		t_object *object);
 int									parse_object_command_segment_64(
-		t_object *object, t_object_cmd *o);
+		t_object *object);
 int									buffer_read_string(
 		t_buffer *buffer, char **addr);
 void								print_hex_4(uint32_t val);
 void								print_hex_8(uint64_t val);
-int									object_sections_push_back(
-		t_section_list **list, t_section section);
+int									object_segments_push_back(
+		t_segment_list **list, t_segment segment);
 int									object_symbols_push_back(
 		t_symbol_list **list, t_symbol symbol);
 int									archive_parse_symdef(
@@ -87,8 +87,42 @@ void								fat_arch_reverse(
 		struct fat_arch *fat_arch);
 int									fat_files_push_back(
 		t_fat *fat, t_fat_file fat_file);
-void								mach_header_reverse(
+void								struct_mach_header_reverse_32(
+		struct mach_header *mach_header);
+void								struct_mach_header_reverse_64(
 		struct mach_header_64 *mach_header);
+int									struct_object_header_read(
+		t_object *object);
+int									struct_symbol_read(
+		t_object *object, t_symbol *symbol);
+void								struct_nlist_reverse_32(
+		struct nlist *nlist);
+void								struct_nlist_reverse_64(
+		struct nlist_64 *nlist);
+int									struct_segment_read_32(
+		t_object *object, t_segment *segment);
+int									struct_segment_read_64(
+		t_object *object, t_segment *segment);
+void								struct_segment_command_reverse_32(
+		struct segment_command *command);
+void								struct_segment_command_reverse_64(
+		struct segment_command_64 *command);
+int									struct_section_read_32(
+		t_object *object, t_section *section);
+int									struct_section_read_64(
+		t_object *object, t_section *section);
+void								struct_section_reverse_32(
+		struct section *section);
+void								struct_section_reverse_64(
+		struct section_64 *section);
+int									segment_sections_push_back(
+		t_section_list **list, t_section section);
+void								struct_object_free(
+		t_object *object);
+void								struct_segment_free(
+		t_segment_list *segment);
+void								struct_section_free(
+		t_section_list *section);
 
 enum								e_byte_order
 {
@@ -110,20 +144,24 @@ struct								s_file
 	int								fd;
 };
 
-union								u_header
+struct								s_object_header
 {
-	struct mach_header				header_32;
-	struct mach_header_64			header_64;
 	uint32_t						magic;
+	cpu_type_t						cputype;
+	cpu_subtype_t					cpusubtype;
+	uint32_t						filetype;
+	uint32_t						ncmds;
+	uint32_t						sizeofcmds;
+	uint32_t						flags;
 };
 
 struct								s_object
 {
-	union u_header					header;
+	t_object_header					header;
 	enum e_byte_order				byte_order;
 	char							is_64;
 	t_buffer						buffer;
-	t_section_list					*sections;
+	t_segment_list					*segments;
 	t_symbol_list					*symbols;
 };
 
@@ -159,27 +197,39 @@ struct								s_archive
 	t_ar_file_list					*files;
 };
 
-union								u_segment_cmd
+struct								s_segment
 {
-	struct segment_command		segment_cmd_32;
-	struct segment_command_64	segment_cmd_64;
+	uint32_t						cmd;
+	uint32_t						cmdsize;
+	char							segname[16];
+	uint64_t						vmaddr;
+	uint64_t						vmsize;
+	uint64_t						fileoff;
+	uint64_t						filesize;
+	vm_prot_t						maxprot;
+	vm_prot_t						initprot;
+	uint32_t						nsects;
+	uint32_t						flags;
+	t_section_list					*sections;
 };
 
-struct								s_segment_cmd
+struct								s_segment_list
 {
-	union u_segment_cmd				segment_cmd;
-};
-
-struct								s_object_cmd
-{
-	struct load_command				load_command;
-	char							*data;
-	size_t							length;
+	t_segment						segment;
+	t_segment_list					*next;
 };
 
 struct								s_section
 {
-	char							*name;
+	char							sectname[16];
+	char							segname[16];
+	uint64_t						addr;
+	uint64_t						size;
+	uint32_t						offset;
+	uint32_t						align;
+	uint32_t						reloff;
+	uint32_t						nreloc;
+	uint32_t						flags;
 };
 
 struct								s_section_list
@@ -191,9 +241,11 @@ struct								s_section_list
 struct								s_symbol
 {
 	char							*name;
+	uint32_t						strx;
+	uint8_t							type;
+	uint8_t							sect;
+	uint16_t						desc;
 	uint64_t						value;
-	uint8_t							section;
-	uint8_t							external;
 };
 
 struct								s_symbol_list

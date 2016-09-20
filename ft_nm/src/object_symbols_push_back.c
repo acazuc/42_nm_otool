@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:27:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 08:24:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 09:44:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ int				object_symbols_push_back(t_symbol_list **list, t_symbol symbol)
 
 	if (!(new = malloc(sizeof(*new))))
 		return (0);
+	if (symbol.name == NULL)
+		if (!(symbol.name = ft_strdup("")))
+			return (0);
 	new->symbol = symbol;
 	new->next = NULL;
 	insert(list, new);

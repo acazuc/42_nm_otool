@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_sections_push_back.c                        :+:      :+:    :+:   */
+/*   segment_sections_push_back.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/18 13:55:16 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/18 14:41:50 by acazuc           ###   ########.fr       */
+/*   Created: 2016/09/20 10:39:34 by acazuc            #+#    #+#             */
+/*   Updated: 2016/09/20 10:42:44 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		object_sections_push_back(t_section_list **list, t_section section)
+int		segment_sections_push_back(t_section_list **list, t_section section)
 {
 	t_section_list	*new;
 	t_section_list	*tmp;

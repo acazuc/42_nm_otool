@@ -6,57 +6,46 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 13:13:03 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 11:49:22 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 11:21:29 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		parse_object_command_segment_32(t_object *object
-		, t_object_cmd *object_cmd)
+static int	parse_object_command_segment(t_object *object
+		, int (*struct_segment_read)(t_object *object, t_segment *segment)
+		, int (*struct_section_read)(t_object *object, t_section *section))
 {
-	struct segment_command		segment_command;
-	struct section				section;
-	t_section					sec;
-	size_t						offset;
+	t_segment					segment;
+	t_section					section;
 	uint32_t					i;
 
-	ft_memcpy(&segment_command, object_cmd->data, sizeof(segment_command));
+	if (!struct_segment_read(object, &segment))
+		return (0);
+	segment.sections = NULL;
 	i = 0;
-	offset = sizeof(segment_command);
-	while (i < segment_command.nsects)
+	while (i < segment.nsects)
 	{
-		ft_memcpy(&section, object_cmd->data + offset, sizeof(section));
-		sec.name = ft_strdup(section.sectname);
-		if (!object_sections_push_back(&object->sections, sec))
+		if (!struct_section_read(object, &section))
 			return (0);
-		offset += sizeof(section);
+		if (!segment_sections_push_back(&segment.sections, section))
+			return (0);
 		i++;
 	}
+	object_segments_push_back(&object->segments, segment);
 	return (1);
-
 }
 
-int		parse_object_command_segment_64(t_object *object
-		, t_object_cmd *object_cmd)
+int			parse_object_command_segment_32(t_object *object)
 {
-	struct segment_command_64	segment_command;
-	struct section_64			section;
-	t_section					sec;
-	size_t						offset;
-	uint32_t					i;
+	return (parse_object_command_segment(object
+				, struct_segment_read_32
+				, struct_section_read_32));
+}
 
-	ft_memcpy(&segment_command, object_cmd->data, sizeof(segment_command));
-	i = 0;
-	offset = sizeof(segment_command);
-	while (i < segment_command.nsects)
-	{
-		ft_memcpy(&section, object_cmd->data + offset, sizeof(section));
-		sec.name = ft_strdup(section.sectname);
-		if (!object_sections_push_back(&object->sections, sec))
-			return (0);
-		offset += sizeof(section);
-		i++;
-	}
-	return (1);
+int			parse_object_command_segment_64(t_object *object)
+{
+	return (parse_object_command_segment(object
+				, struct_segment_read_64
+				, struct_section_read_64));
 }

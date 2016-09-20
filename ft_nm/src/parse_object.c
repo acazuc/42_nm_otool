@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 16:20:08 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 10:27:14 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static int	parse_object_magic(t_object *object)
 {
 	uint32_t	magic;
 
-	if (!(buffer_read(&object->buffer, &object->header.magic
-					, sizeof(object->header.magic))))
+	if (!buffer_read(&object->buffer, &object->header.magic
+					, sizeof(object->header.magic)))
+		return (0);
+	if (!buffer_set_position(&object->buffer, 0))
 		return (0);
 	magic = object->header.magic;
 	if (magic != MH_MAGIC && magic != MH_MAGIC_64 && magic != MH_CIGAM
@@ -29,29 +31,15 @@ static int	parse_object_magic(t_object *object)
 	return (1);
 }
 
-static int	parse_object_header(t_object *object)
-{
-	size_t	header_size;
-
-	header_size = get_object_header_size(object);
-	if (!(buffer_read(&object->buffer, (void*)&object->header.header_64
-					+ sizeof(object->header.magic)
-					, header_size - sizeof(object->header.magic))))
-		return (0);
-	if (object->byte_order == BO_LITTLE)
-		mach_header_reverse(&object->header.header_64);
-	return (1);
-}
-
 int			parse_object(t_object *object)
 {
-	object->sections = NULL;
+	object->segments = NULL;
 	object->symbols = NULL;
-	if (!(parse_object_magic(object)))
+	if (!parse_object_magic(object))
 		return (0);
-	if (!(parse_object_header(object)))
+	if (!struct_object_header_read(object))
 		return (0);
-	if (!parse_object_segments(object))
+	if (!parse_object_commands(object))
 		return (0);
 	return (1);
 }

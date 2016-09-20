@@ -6,33 +6,41 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 08:47:38 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 11:26:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+static char		get_section_letter_result(char *section)
+{
+	if (!ft_strcmp(section, SECT_TEXT))
+		return ('T');
+	if (!ft_strcmp(section, SECT_BSS))
+		return ('B');
+	if (!ft_strcmp(section, SECT_DATA))
+		return ('D');
+	return ('S');
+}
+
 static char		get_section_letter(t_object *object, uint8_t section)
 {
-	t_section_list	*lst;
+	t_segment_list	*seg;
+	t_section_list	*sec;
 	int16_t			i;
 
 	i = 0;
-	lst = object->sections;
-	while (lst)
+	seg = object->segments;
+	while (seg)
 	{
-		if (++i == section)
+		sec = seg->segment.sections;
+		while (sec)
 		{
-			if (!ft_strcmp(lst->section.name, SECT_TEXT))
-				return ('T');
-			if (!ft_strcmp(lst->section.name, SECT_BSS))
-				return ('B');
-			if (!ft_strcmp(lst->section.name, SECT_DATA))
-				return ('D');
-			else
-				return ('S');
+			if (++i == section)
+				return (get_section_letter_result(sec->section.sectname));
+			sec = sec->next;
 		}
-		lst = lst->next;
+		seg = seg->next;
 	}
 	return ('U');
 }
@@ -41,8 +49,11 @@ static void		print_object_letter(t_object *object, t_symbol *symbol)
 {
 	char c;
 
-	c = get_section_letter(object, symbol->section);
-	if (!symbol->external)
+	if (symbol->type & N_STAB)
+		c = '-';
+	else
+		c = get_section_letter(object, symbol->sect);
+	if (!(symbol->type & N_EXT) && c >= 'A' && c <= 'Z')
 		c -= 'A' - 'a';
 	ft_putchar(c);
 }
@@ -54,7 +65,7 @@ void			print_object(t_object *object)
 	lst = object->symbols;
 	while (lst)
 	{
-		if (lst->symbol.section == 0)
+		if (lst->symbol.sect == 0)
 		{
 			if (object->is_64)
 				ft_putstr("                ");
