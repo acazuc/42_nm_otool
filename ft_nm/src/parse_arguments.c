@@ -6,24 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:24:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 15:05:14 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:58:54 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
 char	g_parse_error;
-
-static int	parse_arguments_char_2(t_params *params, char c)
-{
-	if (c == 'A')
-		params->a_caps = 1;
-	else if (c == 'P')
-		params->p_caps = 1;
-	else
-		return (0);
-	return (1);
-}
 
 static int	parse_arguments_char(t_params *params, char c)
 {
@@ -43,14 +32,14 @@ static int	parse_arguments_char(t_params *params, char c)
 		params->u = 1;
 	else if (c == 'U')
 		params->u_caps = 1;
-	else if (c == 'm')
-		params->m = 1;
 	else if (c == 'x')
 		params->x = 1;
 	else if (c == 'j')
 		params->j = 1;
+	else if (c == 'A')
+		params->a_caps = 1;
 	else
-		return (parse_arguments_char_2(params, c));
+		return (0);
 	return (1);
 }
 

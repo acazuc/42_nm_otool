@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 15:50:51 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:59:03 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,11 +173,9 @@ struct								s_params
 	char							r;
 	char							u;
 	char							u_caps;
-	char							m;
 	char							x;
 	char							j;
 	char							a_caps;
-	char							p_caps;
 };
 
 struct								s_env
