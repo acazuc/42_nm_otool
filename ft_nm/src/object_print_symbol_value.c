@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:19:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:18:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:36:27 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	object_print_symbol_value(t_object *object, t_symbol *symbol)
 		else
 			print_hex_4(symbol->value);
 	}
+	ft_putchar(' ');
 }
