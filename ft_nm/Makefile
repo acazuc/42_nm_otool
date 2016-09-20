@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/20 14:16:06 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 15:51:07 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS_NAME = main.c \
 			struct_mach_header_reverse.c \
 			struct_symbol_read.c \
 			struct_symbol_list_push_back.c \
+			struct_symbol_list_reverse.c \
 			struct_nlist_reverse.c \
 			struct_segment_read.c \
 			struct_segment_command_reverse.c \

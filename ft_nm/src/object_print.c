@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 15:12:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:18:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static int		object_print_can_display(t_params *params, t_object *object
 
 static void		object_print_check_fname(t_env *env, char *fname)
 {
-	if (env->params.a_caps)
+	if (env->params.a_caps || env->params.o)
 	{
 		ft_putstr(fname);
-		ft_putchar(' ');
+		ft_putstr(": ");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 15:05:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:50:51 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ int									struct_symbol_read(
 		t_object *object, t_symbol *symbol);
 int									struct_symbol_list_push_back(
 		t_env *env, t_symbol_list **list, t_symbol symbol);
+void								struct_symbol_list_reverse(
+		t_symbol_list **list);
 
 void								struct_nlist_reverse_32(
 		struct nlist *nlist);

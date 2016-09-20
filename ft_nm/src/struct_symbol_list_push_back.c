@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:27:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:32:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:45:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ static int		replace(t_env *env, t_symbol *lst, t_symbol *new)
 		return (0);
 	if (env->params.n)
 	{
-		if (env->params.r)
-			return (lst->value < new->value);
-		return (lst->value >= new->value);
+		if (lst->value > new->value)
+			return (1);
 	}
-	if (env->params.r)
-		return (ft_strcmp(lst->name, new->name) < 0);
 	return (ft_strcmp(lst->name, new->name) >= 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:27:09 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:50:56 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ int			object_parse(t_env *env, t_object *object)
 		return (0);
 	if (!object_parse_commands(env, object))
 		return (0);
+	if (env->params.r)
+		struct_symbol_list_reverse(&object->symbols);
 	return (1);
 }
