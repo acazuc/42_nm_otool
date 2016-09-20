@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:53:27 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:59:29 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int									object_parse_command_segment_32(
 int									object_parse_command_segment_64(
 		t_object *object);
 void								object_print(t_env *env
-		, t_object *object);
+		, t_object *object, char *fname);
 void								object_print_symbol_value(
 		t_env *env, t_object *object, t_symbol *symbol);
 void								object_print_symbol_sect_letter(
@@ -174,8 +174,6 @@ struct								s_params
 	char							m;
 	char							x;
 	char							j;
-	char							l;
-	char							f;
 	char							a_caps;
 	char							p_caps;
 	char							l_caps;

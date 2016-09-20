@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:29:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:02:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,19 @@
 static void		archive_print_file(t_env *env, t_archive *archive
 		, t_ar_file *file)
 {
+	char	fname[ft_strlen(archive->file->name) + ft_strlen(file->name) + 3];
+
+	ft_bzero(fname, sizeof(fname));
 	ft_putchar('\n');
 	ft_putstr(archive->file->name);
 	ft_putchar('(');
 	ft_putstr(file->name);
 	ft_putendl("):");
-	object_print(env, &file->object);
+	ft_strcat(fname, archive->file->name);
+	ft_strcat(fname, ":");
+	ft_strcat(fname, file->name);
+	ft_strcat(fname, ":");
+	object_print(env, &file->object, fname);
 }
 
 static int		check_reorder_symdef(t_archive *archive)

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:24:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:34:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:56:12 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ char	g_parse_error;
 
 static int	parse_arguments_char_2(t_params *params, char c)
 {
-	if (c == 'l')
-		params->l = 1;
-	else if (c == 'f')
-		params->f = 1;
-	else if (c == 'A')
+	if (c == 'A')
 		params->a_caps = 1;
 	else if (c == 'P')
 		params->p_caps = 1;
