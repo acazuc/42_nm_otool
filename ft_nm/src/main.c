@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:34:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:04:34 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:24:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	run_parse_arguments(t_params *params, int ac, char **av)
 	return (ret);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_env	env;
 	int		i;

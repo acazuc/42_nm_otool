@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:05:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:27:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int		check_reorder_symdef(t_archive *archive)
 	return (1);
 }
 
-void			archive_print(t_env *env ,t_archive *archive)
+void			archive_print(t_env *env, t_archive *archive)
 {
 	t_ar_file_list	*lst;
 

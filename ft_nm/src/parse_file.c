@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:21:22 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:27:27 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static int		parse_file_file(t_env *env, t_file *file)
 
 void			parse_file(t_env *env, t_file *file, int print_name)
 {
-
 	if (parse_file_is_archive(env, file))
 		return ;
 	if (print_name)
@@ -79,7 +78,7 @@ void			parse_file(t_env *env, t_file *file, int print_name)
 		ft_putendl(":");
 	}
 	if (parse_file_is_fat(env, file))
-		return;
+		return ;
 	if (!parse_file_file(env, file))
 		ft_putendl_fd("Invalid object file", 2);
 }

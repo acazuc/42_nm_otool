@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:19:57 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:23:50 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int									parse_archive_file_header(t_file *file
 		, t_ar_file_header *f);
 int									archive_files_push_back(
 		t_ar_file_list **list, t_ar_file file);
-void								archive_print(t_env *env, t_archive *archive);
+void								archive_print(t_env *env
+		, t_archive *archive);
 int									parse_object(t_object *object);
 void								print_object(t_env *env, t_object *object);
 int									parse_object_commands(t_object *object);

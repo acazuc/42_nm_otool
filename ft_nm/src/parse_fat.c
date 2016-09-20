@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 13:06:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:21:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 13:24:21 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ t_fat			*parse_fat(t_file *file)
 		return (NULL);
 	if (!(fat = malloc(sizeof(*fat))))
 		return (NULL);
-	i = 0;
+	i = -1;
 	fat->files = NULL;
 	fat->file = file;
 	fat->byte_order = fat_header.magic == FAT_MAGIC ? BO_BIG : BO_LITTLE;
 	if (fat->byte_order == BO_LITTLE)
 		fat_header_reverse(&fat_header);
-	while (i < fat_header.nfat_arch)
+	while (++i < fat_header.nfat_arch)
 	{
 		if (!buffer_read(&file->buffer, &fat_arch, sizeof(fat_arch)))
 			return (parse_fat_free(fat));
@@ -58,7 +58,6 @@ t_fat			*parse_fat(t_file *file)
 			fat_arch_reverse(&fat_arch);
 		if (!parse_fat_start_arch(fat, fat_arch))
 			return (parse_fat_free(fat));
-		i++;
 	}
 	return (fat);
 }
