@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 13:06:17 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 15:34:35 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 12:07:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,13 @@ static void	parse_fat_print(t_fat *fat)
 		return ;
 }
 
-int		parse_fat(t_file *file)
+int			parse_fat(t_file *file)
 {
 	t_fat				fat;
 	struct fat_header	fat_header;
 	struct fat_arch		fat_arch;
 	uint32_t			i;
 
-	if (!buffer_set_position(&file->buffer, 0))
-		return (0);
 	if (!buffer_read(&file->buffer, &fat_header, sizeof(fat_header)))
 		return (0);
 	i = 0;

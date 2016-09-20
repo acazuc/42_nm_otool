@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_segments_push_back.c                        :+:      :+:    :+:   */
+/*   struct_section_list_push_back.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/18 13:55:16 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 10:45:13 by acazuc           ###   ########.fr       */
+/*   Created: 2016/09/20 10:39:34 by acazuc            #+#    #+#             */
+/*   Updated: 2016/09/20 11:48:20 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		object_segments_push_back(t_segment_list **list, t_segment segment)
+int		struct_section_list_push_back(t_section_list **list, t_section section)
 {
-	t_segment_list	*new;
-	t_segment_list	*tmp;
+	t_section_list	*new;
+	t_section_list	*tmp;
 
 	if (!(new = malloc(sizeof(*new))))
 		return (0);
-	new->segment = segment;
+	new->section = section;
 	new->next = NULL;
 	if (!(*list))
 	{

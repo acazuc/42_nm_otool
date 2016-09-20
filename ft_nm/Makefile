@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/20 11:00:42 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 12:05:32 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ SRCS_NAME = main.c \
 			parse_object_command_symtab.c \
 			print_hex.c \
 			parse_object_command_segment.c \
-			object_segments_push_back.c \
 			print_object.c \
 			object_symbols_push_back.c \
 			struct_free.c \
@@ -50,9 +49,12 @@ SRCS_NAME = main.c \
 			struct_nlist_reverse.c \
 			struct_segment_read.c \
 			struct_segment_command_reverse.c \
+			struct_segment_list_push_back.c \
 			struct_section_read.c \
 			struct_section_reverse.c \
-			segment_sections_push_back.c \
+			struct_section_list_push_back.c \
+			get_section_by_index.c \
+			get_symbol_letter.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

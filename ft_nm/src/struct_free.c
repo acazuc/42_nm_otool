@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 08:39:38 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 11:00:29 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 12:06:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	struct_object_free(t_object *object)
 		struct_segment_free(segments_lst);
 		segments_lst = segments_nxt;
 	}
-
 }
 
 void	struct_segment_free(t_segment_list *segment)

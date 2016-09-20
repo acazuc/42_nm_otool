@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 08:28:54 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 08:41:31 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 12:14:29 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	struct_object_header_read_64(t_object *object)
 	return (1);
 }
 
-int		struct_object_header_read(t_object *object)
+int			struct_object_header_read(t_object *object)
 {
 	if (object->is_64)
 		return (struct_object_header_read_64(object));
