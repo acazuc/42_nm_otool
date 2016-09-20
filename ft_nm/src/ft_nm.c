@@ -6,19 +6,29 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/19 15:49:13 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 12:50:52 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+static int		error_open(t_file *file)
+{
+	char	*str;
+
+	str = "Can't open";
+	if (errno == EACCES)
+		str = "Permission denied";
+	else if (errno == ENOENT)
+		str = "File doesn't exists";
+	file_error(file, str);
+	return (0);
+}
+
 static int		open_fstat_s_isdir(t_file *file, struct stat *file_stat)
 {
 	if ((file->fd = open(file->name, O_RDONLY)) == -1)
-	{
-		file_error(file, "Can't open");
-		return (0);
-	}
+		return (error_open(file));
 	if (fstat(file->fd, file_stat) == -1)
 	{
 		close(file->fd);

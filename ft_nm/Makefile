@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/20 12:05:32 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 12:46:23 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,9 @@ SRCS_NAME = main.c \
 			struct_section_list_push_back.c \
 			get_section_by_index.c \
 			get_symbol_letter.c \
+			print_object_symbol_value.c \
+			print_object_symbol_sect_letter.c \
+			parse_arguments.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

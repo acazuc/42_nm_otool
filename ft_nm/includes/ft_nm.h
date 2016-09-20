@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 12:03:40 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 12:50:18 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <mach-o/fat.h>
 # include <sys/stat.h>
 # include <sys/mman.h>
+# include <errno.h>
 # include <fcntl.h>
 
 typedef struct s_file				t_file;
@@ -40,6 +41,8 @@ typedef struct s_section			t_section;
 typedef struct s_section_list		t_section_list;
 typedef struct s_symbol				t_symbol;
 typedef struct s_symbol_list		t_symbol_list;
+typedef struct s_env				t_env;
+typedef struct s_params				t_params;
 
 void								ft_nm(char *file_name
 		, int print_name);
@@ -128,11 +131,43 @@ t_section							*get_section_by_index(
 		t_segment_list *list, uint8_t index);
 char								get_symbol_letter(
 		t_object *object, t_symbol *symbol);
+void								print_object_symbol_value(
+		t_object *object, t_symbol *symbol);
+void								print_object_symbol_sect_letter(
+		t_object *object, t_symbol *symbol);
+
+int									parse_arguments(
+		t_params *params, int ac, char **av);
 
 enum								e_byte_order
 {
 	BO_LITTLE,
 	BO_BIG
+};
+
+struct								s_params
+{
+	char							a;
+	char							g;
+	char							n;
+	char							o;
+	char							p;
+	char							r;
+	char							u;
+	char							u_caps;
+	char							m;
+	char							x;
+	char							j;
+	char							l;
+	char							f;
+	char							a_caps;
+	char							p_caps;
+	char							l_caps;
+};
+
+struct								s_env
+{
+	t_params						params;
 };
 
 struct								s_buffer
