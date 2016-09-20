@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:33:23 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 15:08:40 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ static t_archive	*archive_parse_free(t_archive *archive)
 	return (NULL);
 }
 
+static int			archive_parse_set_tmp_file_values(t_ar_file *tmp_file
+		, t_file *file, t_ar_file_header file_header)
+{
+	tmp_file->header = file_header;
+	if (!(put_file_name(tmp_file, file)))
+		return (0);
+	tmp_file->object.buffer.data = file->buffer.data
+		+ file->buffer.position;
+	tmp_file->object.buffer.position = 0;
+	tmp_file->object.buffer.length = ft_atol(file_header.size)
+		- tmp_file->name_length;
+	return (1);
+}
+
 t_archive			*archive_parse(t_env *env, t_file *file)
 {
 	t_archive			*archive;
@@ -43,14 +57,9 @@ t_archive			*archive_parse(t_env *env, t_file *file)
 	{
 		if (!archive_parse_file_header(file, &file_header))
 			return (archive_parse_free(archive));
-		tmp_file.header = file_header;
-		if (!(put_file_name(&tmp_file, file)))
+		if (!(archive_parse_set_tmp_file_values(&tmp_file, file
+						, file_header)))
 			return (archive_parse_free(archive));
-		tmp_file.object.buffer.data = file->buffer.data
-			+ file->buffer.position;
-		tmp_file.object.buffer.position = 0;
-		tmp_file.object.buffer.length = ft_atol(file_header.size)
-			- tmp_file.name_length;
 		if (!(buffer_set_position(&file->buffer, file->buffer.position
 						+ tmp_file.object.buffer.length)))
 			return (archive_parse_free(archive));
