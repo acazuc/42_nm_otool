@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:31:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:44:12 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,15 @@ int									object_parse_command_segment_64(
 void								object_print(t_env *env
 		, t_object *object);
 void								object_print_symbol_value(
-		t_object *object, t_symbol *symbol);
+		t_env *env, t_object *object, t_symbol *symbol);
 void								object_print_symbol_sect_letter(
 		t_object *object, t_symbol *symbol);
 t_section							*get_section_by_index(
 		t_segment_list *list, uint8_t index);
 char								get_symbol_letter(
 		t_object *object, t_symbol *symbol);
+void								print_hex_1(uint8_t val);
+void								print_hex_2(uint16_t val);
 void								print_hex_4(uint32_t val);
 void								print_hex_8(uint64_t val);
 int									archive_parse_symdef(

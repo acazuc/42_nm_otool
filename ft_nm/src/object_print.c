@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:37:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:53:01 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,20 @@ void			object_print(t_env *env, t_object *object)
 		}
 		if (!env->params.u && !env->params.j)
 		{
-			object_print_symbol_value(object, &lst->symbol);
+			object_print_symbol_value(env, object, &lst->symbol);
 		}
-		if (!env->params.u && !env->params.j)
+		if (env->params.x)
+		{
+			print_hex_1(lst->symbol.type);
+			ft_putchar(' ');
+			print_hex_1(lst->symbol.sect);
+			ft_putchar(' ');
+			print_hex_2(lst->symbol.desc);
+			ft_putchar(' ');
+			print_hex_4(lst->symbol.strx);
+			ft_putchar(' ');
+		}
+		if (!env->params.x && !env->params.u && !env->params.j)
 		{
 			object_print_symbol_sect_letter(object, &lst->symbol);
 		}
