@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:01:14 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:04:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef struct s_params				t_params;
 
 void								ft_nm(t_env *env, char *file_name
 		, int print_name);
-void								parse_file(t_env *env, t_file *file
+void								file_parse(t_env *env, t_file *file
 		, int print_name);
-int									parse_file_header(t_file *file);
-void								print_file(t_file *file);
+int									file_parse_header(t_file *file);
+void								file_print(t_file *file);
 int									buffer_read(t_buffer *buffer
 		, void *addr, size_t len);
 int									buffer_read_le(t_buffer *buffer

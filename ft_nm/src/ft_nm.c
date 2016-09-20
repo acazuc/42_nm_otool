@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:03:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:05:28 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void		start_parse_file(t_env *env, char *name, int print_name)
 		file_error(&file, "Can't mmap");
 		return ;
 	}
-	parse_file(env, &file, print_name);
+	file_parse(env, &file, print_name);
 	close(file.fd);
 	munmap(file.buffer.data, file_stat.st_size);
 }

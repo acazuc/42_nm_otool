@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/20 14:02:45 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/20 14:06:12 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ SRCS_PATH = src/
 
 SRCS_NAME = main.c \
 			ft_nm.c \
-			parse_file.c \
-			print_file.c \
+			file_parse.c \
 			buffer.c \
 			file_error.c \
 			archive_parse.c \

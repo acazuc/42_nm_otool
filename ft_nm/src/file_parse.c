@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:58:27 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:05:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-static int		parse_file_is_archive(t_env *env, t_file *file)
+static int		file_parse_archive(t_env *env, t_file *file)
 {
 	t_archive	*archive;
 	char		magic[8];
@@ -35,7 +35,7 @@ static int		parse_file_is_archive(t_env *env, t_file *file)
 	return (1);
 }
 
-static int		parse_file_is_fat(t_env *env, t_file *file)
+static int		file_parse_fat(t_env *env, t_file *file)
 {
 	t_fat		*fat;
 	uint32_t	magic;
@@ -56,7 +56,7 @@ static int		parse_file_is_fat(t_env *env, t_file *file)
 	return (1);
 }
 
-static int		parse_file_file(t_env *env, t_file *file)
+static int		file_parse_file(t_env *env, t_file *file)
 {
 	t_object object;
 
@@ -67,9 +67,9 @@ static int		parse_file_file(t_env *env, t_file *file)
 	return (1);
 }
 
-void			parse_file(t_env *env, t_file *file, int print_name)
+void			file_parse(t_env *env, t_file *file, int print_name)
 {
-	if (parse_file_is_archive(env, file))
+	if (file_parse_archive(env, file))
 		return ;
 	if (print_name)
 	{
@@ -77,8 +77,8 @@ void			parse_file(t_env *env, t_file *file, int print_name)
 		ft_putstr(file->name);
 		ft_putendl(":");
 	}
-	if (parse_file_is_fat(env, file))
+	if (file_parse_fat(env, file))
 		return ;
-	if (!parse_file_file(env, file))
+	if (!file_parse_file(env, file))
 		ft_putendl_fd("Invalid object file", 2);
 }
