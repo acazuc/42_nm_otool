@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:35:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:16:21 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:31:30 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		file_parse_archive(t_env *env, t_file *file)
 			return (-1);
 		return (0);
 	}
-	if (!(archive = archive_parse(file)))
+	if (!(archive = archive_parse(env, file)))
 	{
 		ft_putendl_fd("Invalid archive", 2);
 		return (-1);
@@ -46,7 +46,7 @@ static int		file_parse_fat(t_env *env, t_file *file)
 		return (-1);
 	if (magic != FAT_MAGIC && magic != FAT_CIGAM)
 		return (0);
-	if (!(fat = fat_parse(file)))
+	if (!(fat = fat_parse(env, file)))
 	{
 		ft_putendl_fd("Invalid fat", 2);
 		return (-1);
@@ -61,7 +61,7 @@ static int		file_parse_file(t_env *env, t_file *file)
 	t_object object;
 
 	object.buffer = file->buffer;
-	if (!(object_parse(&object)))
+	if (!(object_parse(env, &object)))
 		return (0);
 	object_print(env, &object);
 	return (1);

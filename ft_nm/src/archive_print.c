@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:16:34 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:29:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 static void		archive_print_file(t_env *env, t_archive *archive
 		, t_ar_file *file)
 {
-	if (!object_parse(&file->object))
-		return ;
 	ft_putchar('\n');
 	ft_putstr(archive->file->name);
 	ft_putchar('(');

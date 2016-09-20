@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 11:43:57 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:00:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:26:08 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		object_parse_command_symtab(t_object *object)
+int		object_parse_command_symtab(t_env *env, t_object *object)
 {
 	struct symtab_command	symtab_command;
 	t_symbol				symbol;
@@ -30,7 +30,7 @@ int		object_parse_command_symtab(t_object *object)
 		if (symbol.strx)
 			symbol.name = (char*)(object->buffer.data
 					+ symtab_command.stroff + symbol.strx);
-		if (!struct_symbol_list_push_back(&object->symbols, symbol))
+		if (!struct_symbol_list_push_back(env, &object->symbols, symbol))
 			return (0);
 	}
 	return (1);

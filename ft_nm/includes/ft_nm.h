@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:17:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:31:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,26 @@ int									buffer_set_position(t_buffer *buffer
 		, size_t pos);
 void								file_error(t_file *file
 		, char *message);
-t_archive							*archive_parse(t_file *file);
+t_archive							*archive_parse(t_env *env
+		, t_file *file);
 int									archive_parse_file_header(t_file *file
 		, t_ar_file_header *f);
 int									archive_files_push_back(
 		t_ar_file_list **list, t_ar_file file);
 void								archive_print(t_env *env
 		, t_archive *archive);
-int									object_parse(t_object *object);
-int									object_parse_commands(t_object *object);
+int									object_parse(t_env *env
+		, t_object *object);
+int									object_parse_commands(t_env *env
+		, t_object *object);
 int									object_parse_command_symtab(
-		t_object *object);
+		t_env *env, t_object *object);
 int									object_parse_command_segment_32(
 		t_object *object);
 int									object_parse_command_segment_64(
 		t_object *object);
-void								object_print(t_env *env, t_object *object);
+void								object_print(t_env *env
+		, t_object *object);
 void								object_print_symbol_value(
 		t_object *object, t_symbol *symbol);
 void								object_print_symbol_sect_letter(
@@ -86,7 +90,7 @@ void								print_hex_4(uint32_t val);
 void								print_hex_8(uint64_t val);
 int									archive_parse_symdef(
 		t_archive *archive, t_ar_file *file);
-t_fat								*fat_parse(t_file *file);
+t_fat								*fat_parse(t_env *env, t_file *file);
 void								fat_print(t_env *env, t_fat *fat);
 void								fat_header_reverse(
 		struct fat_header *fat_header);
@@ -106,7 +110,7 @@ int									struct_object_header_read(
 int									struct_symbol_read(
 		t_object *object, t_symbol *symbol);
 int									struct_symbol_list_push_back(
-		t_symbol_list **list, t_symbol symbol);
+		t_env *env, t_symbol_list **list, t_symbol symbol);
 
 void								struct_nlist_reverse_32(
 		struct nlist *nlist);

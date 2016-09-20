@@ -6,11 +6,26 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:27:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:07:03 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:32:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+static int		replace(t_env *env, t_symbol *lst, t_symbol *new)
+{
+	if (env->params.p)
+		return (0);
+	if (env->params.n)
+	{
+		if (env->params.r)
+			return (lst->value < new->value);
+		return (lst->value >= new->value);
+	}
+	if (env->params.r)
+		return (ft_strcmp(lst->name, new->name) < 0);
+	return (ft_strcmp(lst->name, new->name) >= 0);
+}
 
 static void		swap(t_symbol_list *new, t_symbol_list *lst, t_symbol_list *prv
 		, t_symbol_list **list)
@@ -22,7 +37,7 @@ static void		swap(t_symbol_list *new, t_symbol_list *lst, t_symbol_list *prv
 		(*list) = new;
 }
 
-static void		insert(t_symbol_list **list, t_symbol_list *new)
+static void		insert(t_env *env, t_symbol_list **list, t_symbol_list *new)
 {
 	t_symbol_list		*prv;
 	t_symbol_list		*lst;
@@ -36,7 +51,7 @@ static void		insert(t_symbol_list **list, t_symbol_list *new)
 	prv = NULL;
 	while (lst)
 	{
-		if (ft_strcmp(lst->symbol.name, new->symbol.name) >= 0)
+		if (replace(env, &lst->symbol, &new->symbol))
 		{
 			swap(new, lst, prv, list);
 			return ;
@@ -51,7 +66,7 @@ static void		insert(t_symbol_list **list, t_symbol_list *new)
 	}
 }
 
-int				struct_symbol_list_push_back(t_symbol_list **list
+int				struct_symbol_list_push_back(t_env *env, t_symbol_list **list
 		, t_symbol symbol)
 {
 	t_symbol_list		*new;
@@ -63,6 +78,6 @@ int				struct_symbol_list_push_back(t_symbol_list **list
 			return (0);
 	new->symbol = symbol;
 	new->next = NULL;
-	insert(list, new);
+	insert(env, list, new);
 	return (1);
 }

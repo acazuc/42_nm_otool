@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:24:27 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 13:51:35 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:27:09 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	object_parse_magic(t_object *object)
 	return (1);
 }
 
-int			object_parse(t_object *object)
+int			object_parse(t_env *env, t_object *object)
 {
 	object->segments = NULL;
 	object->symbols = NULL;
@@ -39,7 +39,7 @@ int			object_parse(t_object *object)
 		return (0);
 	if (!struct_object_header_read(object, &object->header))
 		return (0);
-	if (!object_parse_commands(object))
+	if (!object_parse_commands(env, object))
 		return (0);
 	return (1);
 }

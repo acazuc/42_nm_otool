@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 07:30:15 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:08:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/20 14:33:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_archive	*archive_parse_free(t_archive *archive)
 	return (NULL);
 }
 
-t_archive			*archive_parse(t_file *file)
+t_archive			*archive_parse(t_env *env, t_file *file)
 {
 	t_archive			*archive;
 	t_ar_file_header	file_header;
@@ -54,6 +54,8 @@ t_archive			*archive_parse(t_file *file)
 		if (!(buffer_set_position(&file->buffer, file->buffer.position
 						+ tmp_file.object.buffer.length)))
 			return (archive_parse_free(archive));
+		if (!object_parse(env, &tmp_file.object))
+			continue;
 		archive_files_push_back(&archive->files, tmp_file);
 	}
 	return (archive);
