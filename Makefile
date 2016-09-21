@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/21 12:45:42 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/21 13:22:31 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_NM = ft_nm
 
 NAME_OTOOL = ft_otool
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -g
+CFLAGS = -Wall -Wextra -Werror -Ofast -g -m32
 
 CC = gcc
 

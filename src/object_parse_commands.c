@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 10:25:45 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 14:26:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 13:33:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int		object_parse_load_command(t_object *object
 		, struct load_command *load_command)
 {
 	if (!buffer_read(&object->buffer, load_command
-				, sizeof(load_command)))
+				, sizeof(*load_command)))
 		return (0);
 	if (!buffer_set_position(&object->buffer, object->buffer.position
 				- sizeof(*load_command)))
@@ -43,6 +43,11 @@ static int		object_parse_command(t_env *env, t_object *object)
 
 	if (!object_parse_load_command(object, &load_command))
 		return (0);
+	if (object->byte_order == BO_LITTLE)
+	{
+		load_command.cmd = ft_swap_int(load_command.cmd);
+		load_command.cmdsize = ft_swap_int(load_command.cmdsize);
+	}
 	buff_pos = object->buffer.position;
 	if (!object_parse_command_execute(env, object, &load_command))
 		return (0);
