@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 11:16:02 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 12:37:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 13:22:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ static int	run_parse_arguments(t_params *params, int ac, char **av)
 
 static int	check_params(t_params *params)
 {
-	if (!params->a && !params->s_caps && !params->f && !params->h
-			&& !params->l && !params->t && !params->d)
+	if (!params->a && !params->t && !params->d)
 	{
-		ft_putendl_fd("You must specify at least one of -aSfhltd", 2);
+		ft_putendl_fd("You must specify at least one of -atd", 2);
 		return (0);
 	}
 	return (1);

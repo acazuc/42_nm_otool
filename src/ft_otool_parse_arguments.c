@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 12:24:58 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 11:53:36 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 13:21:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ static int	parse_arguments_char(t_params *params, char c)
 {
 	if (c == 'a')
 		params->a = 1;
-	else if (c == 'S')
-		params->s_caps = 1;
-	else if (c == 'f')
-		params->f = 1;
-	else if (c == 'h')
-		params->h = 1;
-	else if (c == 'l')
-		params->l = 1;
 	else if (c == 't')
 		params->t = 1;
 	else if (c == 'd')
