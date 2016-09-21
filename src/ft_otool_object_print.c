@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 12:33:04 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 12:35:05 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void		object_print_section_do(t_object *object, t_section *section)
 			print_hex_8(section->addr + pos);
 		else
 			print_hex_4(section->addr + pos);
+		ft_putchar(' ');
 		i = -1;
 		while (++i < MIN(16, section->buffer.length - pos))
 		{

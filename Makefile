@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/21 11:43:53 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/21 12:45:42 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ COM_SRCS = $(addprefix $(SRCS_PATH), $(COM_SRCS_NAME))
 
 NM_SRCS_NAME = ft_nm_main.c \
 			   ft_nm_ft_nm.c \
+			   ft_nm_file_print.c \
 			   ft_nm_archive_print.c \
 			   ft_nm_object_print.c \
 			   ft_nm_object_print_symbol_value.c \
@@ -69,6 +70,7 @@ NM_SRCS = $(addprefix $(SRCS_PATH), $(NM_SRCS_NAME))
 
 OTOOL_SRCS_NAME = ft_otool_main.c \
 				  ft_otool_ft_otool.c \
+				  ft_otool_file_print.c \
 				  ft_otool_archive_print.c \
 				  ft_otool_object_print.c \
 				  ft_otool_fat_print.c \

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:59:00 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 12:12:48 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 12:36:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		open_fstat_s_isdir(t_file *file, struct stat *file_stat)
 	return (1);
 }
 
-static void		start_parse_file(t_env *env, char *name, int print_name)
+static void		start_parse_file(t_env *env, char *name, int is_first)
 {
 	t_file			file;
 	struct stat		file_stat;
@@ -61,12 +61,12 @@ static void		start_parse_file(t_env *env, char *name, int print_name)
 		file_error(&file, "Can't mmap");
 		return ;
 	}
-	file_parse(env, &file, print_name);
+	file_parse(env, &file, is_first);
 	close(file.fd);
 	munmap(file.buffer.data, file_stat.st_size);
 }
 
-void			ft_otool(t_env *env, char *file_name, int print_name)
+void			ft_otool(t_env *env, char *file_name, int is_first)
 {
-	start_parse_file(env, file_name, print_name);
+	start_parse_file(env, file_name, is_first);
 }

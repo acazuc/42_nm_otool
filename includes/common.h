@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 10:57:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 12:32:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 12:48:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ typedef struct s_params				t_params;
 void								file_parse(t_env *env, t_file *file
 				, int print_name);
 int									file_parse_header(t_file *file);
-void								file_print(t_file *file);
+void								file_print(t_env *env, t_file *file
+		, t_object *object, int first_file);
 int									buffer_read(t_buffer *buffer
 				, void *addr, size_t len);
 int									buffer_read_le(t_buffer *buffer
@@ -58,6 +59,7 @@ int									buffer_set_position(t_buffer *buffer
 				, size_t pos);
 void								file_error(t_file *file
 				, char *message);
+
 t_archive							*archive_parse(t_env *env
 				, t_file *file);
 int									archive_parse_file_header(t_file *file
@@ -67,7 +69,8 @@ int									archive_parse_symdef(
 int									archive_files_push_back(
 				t_ar_file_list **list, t_ar_file file);
 void								archive_print(t_env *env
-		, t_archive *archive);
+		, t_archive *archive, int first_file);
+
 int									object_parse(t_env *env
 				, t_object *object);
 int									object_parse_commands(t_env *env
@@ -80,6 +83,7 @@ int									object_parse_command_segment_64(
 				t_object *object);
 void								object_print(t_env *env
 		, t_object *object, char *fname);
+
 t_fat								*fat_parse(t_env *env, t_file *file);
 void								fat_header_reverse(
 		struct fat_header *fat_header);
@@ -87,7 +91,8 @@ void								fat_arch_reverse(
 		struct fat_arch *fat_arch);
 int									fat_files_push_back(
 		t_fat *fat, t_fat_file fat_file);
-void								fat_print(t_env *env, t_fat *fat);
+void								fat_print(t_env *env, t_fat *fat
+		, t_file *file, int first_file);
 
 void								struct_mach_header_reverse_32(
 		struct mach_header *mach_header);

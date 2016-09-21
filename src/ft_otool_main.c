@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 11:16:02 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 11:53:27 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 12:37:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			main(int ac, char **av)
 		{
 			while (i < ac)
 			{
-				ft_otool(&env, av[i], ac - j > 1);
+				ft_otool(&env, av[i], j == i);
 				i++;
 			}
 		}
