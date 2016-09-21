@@ -1,1 +1,5 @@
 libft
+obj
+*.swp
+ft_nm
+ft_otool

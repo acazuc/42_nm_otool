@@ -6,14 +6,14 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 09:21:30 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/20 15:59:03 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 10:27:25 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_NM_H
 # define FT_NM_H
 
-# include "../../libft/include/libft.h"
+# include "../libft/include/libft.h"
 # include <mach-o/ranlib.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
