@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 10:57:53 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 11:08:25 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 12:32:54 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <sys/mman.h>
 # include <errno.h>
 # include <fcntl.h>
+
+# define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 typedef struct s_file				t_file;
 typedef struct s_ar_file_header		t_ar_file_header;
