@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 09:03:41 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 12:49:51 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/21 13:01:04 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void		archive_print_file(t_env *env, t_archive *archive
 	char	fname[ft_strlen(archive->file->name) + ft_strlen(file->name) + 3];
 
 	ft_bzero(fname, sizeof(fname));
-	ft_putchar('\n');
 	ft_putstr(archive->file->name);
 	ft_putchar('(');
 	ft_putstr(file->name);
@@ -53,6 +52,8 @@ void			archive_print(t_env *env, t_archive *archive, int a)
 	t_ar_file_list	*lst;
 
 	(void)a;
+	ft_putstr("Archive : ");
+	ft_putendl(archive->file->name);
 	if (!check_reorder_symdef(archive))
 		return ;
 	lst = archive->files;
