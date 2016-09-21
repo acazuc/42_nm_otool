@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/21 10:45:49 by acazuc           ###   ########.fr        #
+#    Updated: 2016/09/21 10:50:28 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,20 +54,20 @@ COM_SRCS_NAME = file_parse.c \
 
 COM_SRCS = $(addprefix $(SRCS_PATH), $(COM_SRCS_NAME))
 
-NM_SRCS_NAME = main.c \
-			ft_nm.c \
-			archive_print.c \
-			object_print.c \
-			object_print_symbol_value.c \
-			object_print_symbol_sect_letter.c \
-			get_section_by_index.c \
-			get_symbol_letter.c \
-			fat_print.c \
-			parse_arguments.c \
+NM_SRCS_NAME = ft_nm_main.c \
+			ft_nm_ft_nm.c \
+			ft_nm_archive_print.c \
+			ft_nm_object_print.c \
+			ft_nm_object_print_symbol_value.c \
+			ft_nm_object_print_symbol_sect_letter.c \
+			ft_nm_get_section_by_index.c \
+			ft_nm_get_symbol_letter.c \
+			ft_nm_fat_print.c \
+			ft_nm_parse_arguments.c \
 
 NM_SRCS = $(addprefix $(SRCS_PATH), $(NM_SRCS_NAME))
 
-OTOOL_SRCS_NAME = main.c \
+OTOOL_SRCS_NAME = ft_otool_main.c \
 
 OTOOL_SRCS = $(addprefix $(SRCS_PATH), $(OTOOL_SRCS_NAME))
 
