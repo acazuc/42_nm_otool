@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 14:20:24 by acazuc            #+#    #+#             */
-/*   Updated: 2016/09/21 12:35:05 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/09/30 16:47:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void			object_print(t_env *env, t_object *object, char *fname)
 	(void)fname;
 	if (env->params.t)
 		object_print_section(object, SEG_TEXT, SECT_TEXT);
-	else if (env->params.d)
+	if (env->params.d)
 		object_print_section(object, SEG_DATA, SECT_DATA);
 }
