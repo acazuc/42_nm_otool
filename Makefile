@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/09/21 13:36:33 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/01 16:04:14 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,8 +122,8 @@ clean:
 fclean: clean
 	@Make fclean -C libft/
 	@echo " - Clearing executables file"
-	@rm -f $(NM_NAME)
-	@rm -f $(OTOOL_NAME)
+	@rm -f $(NAME_NM)
+	@rm -f $(NAME_OTOOL)
 
 re: fclean all
 
